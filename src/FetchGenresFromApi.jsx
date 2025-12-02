@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react";
 import MovieData from './FetchMoviesFromApi.jsx'
+const genreApiUrl = import.meta.env.VITE_GENRE_URL
 
 
 function FetchGenreData() {
@@ -10,7 +11,7 @@ function FetchGenreData() {
     },[])
 
     async function genreData() {
-        const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=a0b87e3161e78fd11ac65de503737085`
+        const url = genreApiUrl
         let res = await fetch(url,{
             method:'GET'
         })

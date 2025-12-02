@@ -1,42 +1,14 @@
 import { useState, useEffect ,useRef } from "react";
 import MovieCard from "./MovieCard";
+import useFavourites  from "./customHooks/useFavourite";
+import Header from './Header';
+
+const movieapiurl = import.meta.env.VITE_MOVIE_API_URL
+
 function FetchMovieFromApi({genres}) {
     const [moviesData , setMovie] = useState([]);
     const [page , setPage] = useState(1);
-    const [favourites, setFavourites] = useState([]);
-    const isFirstRender = useRef(true); 
-
-        //on mount
-    useEffect(() => {
-        const storedFavourites = localStorage.getItem('movieFavourites');
-        if (storedFavourites) {
-            setFavourites(JSON.parse(storedFavourites));
-        }
-    }, []);
-
-        //whenever we chnage toggle favourite button 
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false; // After first render, set to false
-            return; // Skip saving on first render
-        }
-        localStorage.setItem('movieFavourites', JSON.stringify(favourites));
-    }, [favourites]);
-    
-
-    function toggleFavourite(movie) {
-        const isFav = favourites.some(fav => (fav.id === movie.id))
-        if(isFav) {
-            setFavourites(favourites.filter(fav => fav.id !== movie.id));
-        }
-        else {
-            setFavourites(prev => [...prev, movie]);
-        }
-    }
-
-    const isFavourite = (movie) => {
-        return favourites.some(fav => fav.id === movie.id);
-    }
+    const { favourites, toggleFavourite, isFavourite } = useFavourites();
 
 
     useEffect(()=> {
@@ -44,7 +16,7 @@ function FetchMovieFromApi({genres}) {
     },[page]);
 
     async function fetchData () {
-        const url = `https://api.themoviedb.org/3/movie/popular?api_key=a0b87e3161e78fd11ac65de503737085&page=${page}`;
+        const url = `${movieapiurl}&page=${page}`;
         let response = await fetch(url, {
             method: 'GET'
         });
@@ -54,8 +26,8 @@ function FetchMovieFromApi({genres}) {
     console.log(moviesData);
     return (
         <>
-        <h1>Showing Movie Data</h1>
         <div className="container">
+            <Header/>
             {moviesData && moviesData.map((movie)=> (
                 <MovieCard movie={movie} key={Date.now()+''+Math.random()} genres={genres} isFavourite={isFavourite} toggleFavourite={toggleFavourite}/>
             ))
