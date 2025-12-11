@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './css/movieCard.css'
+import '../css/movieCard.css';
 
 const MovieCard = ({ movie, genres, isFavourite, toggleFavourite}) => {
     const imageBase = "https://image.tmdb.org/t/p/w500";

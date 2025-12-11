@@ -91,7 +91,7 @@
 .card-container{
   padding: 20px;
 }
-.container {
+.main-content {
   background: linear-gradient(to bottom right, #111827, #581c87, #111827);
   display: flex;
   flex-wrap: wrap;

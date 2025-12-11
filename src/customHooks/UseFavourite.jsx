@@ -1,4 +1,6 @@
+import { calcGeneratorDuration } from "motion";
 import { useState,useEffect ,useRef } from "react";
+import toast from 'react-hot-toast';
 
 function useFavourite() {
     const [favourites, setFavourites] = useState([]);
@@ -27,11 +29,35 @@ function useFavourite() {
         const isFav = favourites.some(fav => (fav.id === movie.id))
         if(isFav) {
             setFavourites(favourites.filter(fav => fav.id !== movie.id));
+            showRemoveFromFavouriteToast(movie.title); 
         }
         else {
+            showAddToFavouriteToast(movie.title);
             setFavourites(prev => [...prev, movie]);
         }
     }
+
+    const showAddToFavouriteToast = (title) => {
+        toast.success(
+            <span>
+                <span className="font-bold">{title}</span> added to your favourites
+            </span>,
+            {
+                duration: 3000,
+            }
+        );
+    };
+
+    const showRemoveFromFavouriteToast = (title) => {
+        toast.error(
+            <span>
+                <span className="font-bold">{title}</span> removed from your favourites
+            </span>,
+            {
+                duration: 3000,
+            }
+        );
+    };
 
     const isFavourite = (movie) => {
         return favourites.some(fav => fav.id === movie.id);

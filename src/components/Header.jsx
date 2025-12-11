@@ -1,7 +1,10 @@
 // import React from "react";
-import "./css/header.css";
+import "../css/header.css";
+import CircularText from './CircularText.jsx';
+
 
 function Header() {
+
   return (
     <div className="app">
       {/* Navbar */}
@@ -11,9 +14,9 @@ function Header() {
             <h1>CineFLIX</h1>
           </div>
           <div className="navbar-links">
-            <a href="#home" className="nav-link">Home</a>
-            <a href="#favourites" className="nav-link">Favourites</a>
-            <a href="#about" className="nav-link">About</a>
+            <a href="/" className="nav-link">Home</a>
+            <a href="favourites" className="nav-link">Favourites</a>
+            <a href="about" className="nav-link">About</a>
           </div>
         </div>
       </nav>
@@ -22,6 +25,12 @@ function Header() {
         <div className="hero-overlay"></div>
       </div>
 
+        <CircularText
+                text="Welcome*To*CINEFLIX*"
+                onHover="speedUp"
+                spinDuration={20}
+                className="circular-text"
+        />
       
     </div>
   );
