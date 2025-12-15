@@ -1,6 +1,9 @@
 // import React from "react";
+import { Link } from "react-router-dom";
 import "../css/header.css";
-import CircularText from './CircularText.jsx';
+import CircularText from './animation/CircularText.jsx';
+//for text animation of the logo 
+import TextType from './animation/TextType';
 
 
 function Header() {
@@ -11,12 +14,19 @@ function Header() {
       <nav className="navbar">
         <div className="navbar-container">
           <div className="navbar-logo">
-            <h1>CineFLIX</h1>
+            <TextType 
+                  text={["CineFLIX"]}
+                  typingSpeed={75}
+                  pauseDuration={1500}
+                  showCursor={true}
+                  cursorCharacter=""
+                  className="logo-text"
+                />
           </div>
           <div className="navbar-links">
-            <a href="/" className="nav-link">Home</a>
-            <a href="favourites" className="nav-link">Favourites</a>
-            <a href="about" className="nav-link">About</a>
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/favourites" className="nav-link">Favourites</Link>
+            <Link to="/about" className="nav-link">About</Link>
           </div>
         </div>
       </nav>

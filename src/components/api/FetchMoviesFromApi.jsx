@@ -1,7 +1,9 @@
 import { useState, useEffect ,useRef } from "react";
-import MovieCard from "./MovieCard";
-import useFavourites  from "../customHooks/UseFavourite";
-import Header from './Header';
+import MovieCard from "../MovieCard";
+import useFavourites  from "../../customHooks/UseFavourite";
+import Header from '../Header';
+import LoadingEffect from '../animation/LoadingEffect';
+
 
 const movieapiurl = import.meta.env.VITE_MOVIE_API_URL
 
@@ -9,38 +11,40 @@ function FetchMovieFromApi({genres}) {
     const [moviesData , setMovie] = useState([]);
     const [page , setPage] = useState(1);
     const { favourites, toggleFavourite, isFavourite } = useFavourites();
-    let isLoading = false;
+    const [isLoading, setIsLoading] = useState(false);
     
     useEffect(()=> {
         fetchData();
     },[page]);
 
     async function fetchData () {
+        setIsLoading(true);
         const url = `${movieapiurl}&page=${page}`;
         let response = await fetch(url, {
             method: 'GET'
         });
         response = await response.json()
         setMovie(prev =>[...prev,...response.results])
+        setIsLoading(false); 
     }
-    
+
     useEffect(() => {
+        const handleScroll = () => {
+            const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+            
+            if (bottom && !isLoading) {
+                setIsLoading(true);
+                setTimeout(() => {
+                    setPage(prev => prev + 1);  
+                    setIsLoading(false); 
+                }, 2500);
+            }
+        };
+
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [isLoading]); 
 
-    const handleScroll = () => {
-        const bottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-
-        if (bottom) {
-            isLoading = true;
-            setPage(page => page+1);
-
-            setTimeout(()=> {
-                isLoading = false;
-            },500)
-        }
-    };
     console.log(moviesData);
     return (
         <>
@@ -51,7 +55,10 @@ function FetchMovieFromApi({genres}) {
             ))
             }
         </div>
-        {/* <button onClick={()=> setPage(page+1)}> Load More</button> */}
+
+        {isLoading && (
+            <LoadingEffect/>
+        )}
         </>
     )
     
