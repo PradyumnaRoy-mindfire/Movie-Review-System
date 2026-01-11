@@ -3,7 +3,7 @@ const API_KEY = import.meta.env.VITE_MOVIE_API_KEY
 
 const FetchMovieDetailsFromApi = (id) => {
     const movieDetailsApiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
-    const [movie, setMovie] = useState(null);
+    const [movie, setMovie] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(()=> {

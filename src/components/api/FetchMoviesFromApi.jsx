@@ -4,7 +4,6 @@ import useFavourites  from "../../customHooks/UseFavourite";
 import Header from '../Header';
 import LoadingEffect from '../animation/LoadingEffect';
 
-
 const movieapiurl = import.meta.env.VITE_MOVIE_API_URL
 
 function FetchMovieFromApi({genres}) {
@@ -48,7 +47,13 @@ function FetchMovieFromApi({genres}) {
     console.log(moviesData);
     return (
         <>
-        <div className="main-content ">
+        <div style={{
+            background: 'linear-gradient(to bottom right, #111827, #581c87, #111827)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center'
+            }}>
             <Header/>
             {moviesData && moviesData.map((movie)=> (
                 <MovieCard movie={movie} key={Date.now()+''+Math.random()} genres={genres} isFavourite={isFavourite} toggleFavourite={toggleFavourite}/>
