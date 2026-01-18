@@ -4,6 +4,7 @@ import LoadingEffect from "../animation/LoadingEffect";
 import FetchMovieDetailsFromApi from "../api/FetchMovieDetailsFromApi";
 import FetchMovieVideosFromApi from "../api/FetchMovieVideosFromApi";
 import Navbar from "../Navbar";
+import FavouriteButton from "../FavouriteButton";
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY
 
 
@@ -77,11 +78,14 @@ const MovieDetails = () => {
             )}
 
             {/* Meta Info */}
-            <div className="flex flex-wrap gap-4 mb-6 text-sm">
-              <span className="bg-purple-600 px-3 py-1 rounded-full">{movie.release_date}</span>
-              <span className="bg-purple-600 px-3 py-1 rounded-full">{formatRuntime(movie.runtime)}</span>
-              <span className="bg-yellow-500 text-black px-3 py-1 rounded-full font-bold">
+            <div className="flex flex-wrap gap-4 mb-4 text-sm">
+              <span className="bg-green-600 px-3 py-1 rounded-full font-bold inline-flex items-center h-9">{movie.release_date}</span>
+              <span className="bg-blue-600 px-3 py-1 rounded-full font-bold inline-flex items-center h-9">{formatRuntime(movie.runtime)}</span>
+              <span className="bg-purple-600  px-3 py-1 rounded-full font-bold inline-flex items-center h-9">
                 ⭐ {movie.vote_average?.toFixed(1)} ({movie.vote_count} votes)
+              </span>
+              <span className="-mt-1.5">
+                  <FavouriteButton movie={movie} />
               </span>
             </div>
 
@@ -151,7 +155,7 @@ const MovieDetails = () => {
               </div>
             )}
 
-            {/* Production Countries */}
+            {/* Production Countries Details */}
             {movie.production_countries?.length > 0 && (
               <div className="mb-6">
                 <h3 className="text-lg font-semibold mb-1">Production Countries</h3>
