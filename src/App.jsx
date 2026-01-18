@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Genres from './components/api/FetchGenresFromApi';
+import Home from "./components/pages/Home";
 import Favourite from "./components/pages/Favourite";
 import Error404NotFound from "./components/pages/Error404NotFound";
 import { Toaster } from 'react-hot-toast';
@@ -17,10 +18,10 @@ function App() {
         }
       }}/>
       <Routes>
-        <Route path="/" element={<Genres />} />
-        <Route path="/favourite" element={<Favourite />} />
-        <Route path="*" element={<Error404NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/favourites" element={<Favourite />} />
         <Route path="/movies/:id/details" element={<MovieDetails />} />
+        <Route path="*" element={<Error404NotFound />} />
       </Routes>
     </BrowserRouter>
   );
