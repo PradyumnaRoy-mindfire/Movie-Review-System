@@ -5,7 +5,7 @@ import { Star, Calendar, Grip } from 'lucide-react';
 import DropZone from '../DropZone.jsx';
 
 const Favourite = () => {
-  const { favourites, toggleFavourite, isFavourite } = useFavourite();
+  const { favourites } = useFavourite();
   const [favouriteMovies, setFavouriteMovies] = useState([]);
   const [watchLaterMovies, setWatchLaterMovies] = useState([]);
   const [draggedMovie, setDraggedMovie] = useState(null);
@@ -19,7 +19,6 @@ const Favourite = () => {
         const parsed = JSON.parse(storedWatchLater);
         setWatchLaterMovies(parsed);
       } catch (error) {
-        console.error('Error loading watch later movies:', error);
         setWatchLaterMovies([]);
       }
     }

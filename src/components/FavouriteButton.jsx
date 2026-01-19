@@ -1,7 +1,8 @@
 import styles from '../css/movieCard.module.css';
 import  useFavourites  from '../customHooks/useFavourite.jsx';
+import removeFromWatchLater from '../customHooks/removeFromWatchLater.jsx';
 
-const FavouriteButton = ({movie}) => {
+const FavouriteButton = ({movie,hide}) => {
   const { isFavourite, toggleFavourite } = useFavourites();
   return (
    <button
@@ -12,6 +13,13 @@ const FavouriteButton = ({movie}) => {
             e.stopPropagation();  //stops the event from moving upward in the DOM tree
             e.preventDefault();
             toggleFavourite(movie);
+            
+            if(hide){
+                removeFromWatchLater(movie);
+                setTimeout(() => {
+                    hide(movie);
+                }, 1);
+            }
         }}
         title={
             isFavourite(movie)
