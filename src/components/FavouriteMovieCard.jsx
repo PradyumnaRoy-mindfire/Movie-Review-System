@@ -2,6 +2,7 @@ import { Star, Calendar, Grip } from 'lucide-react';
 import FavouriteButton from './FavouriteButton';
 import { Link } from 'react-router-dom';
 import GenreData from './api/FetchGenresFromApi';
+import { useState } from 'react';
 
 const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
   const {genres, genreNameIdMap } = GenreData();
@@ -9,6 +10,12 @@ const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
   const imageUrl = movie.poster_path 
     ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
     : 'https://via.placeholder.com/200x300?text=No+Image';
+
+  const [hidden, setHidden] = useState(false);
+
+  if (hidden){
+    return null;
+  } 
 
   return (
     <div
@@ -51,7 +58,7 @@ const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
           </div>
           
             <div className="flex-shrink-0 float-end">
-              <FavouriteButton movie={movie} />
+              <FavouriteButton movie={movie} hide={() => setHidden(true)}/>
             </div>
       </div>
     </div>
