@@ -17,7 +17,6 @@ function FetchGenreData() {
         res = await res.json();
         setGenre(res.genres);
     }
-    console.log(genres);
 
     const genreNameIdMap = Object.fromEntries(
         genres.map(g => [g.id, g.name])

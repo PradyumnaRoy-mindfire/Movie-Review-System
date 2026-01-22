@@ -2,13 +2,14 @@ import { useState, useEffect, useRef } from "react";
 import MovieCard from "../MovieCard";
 import Header from '../Header';
 import LoadingEffect from '../animation/LoadingEffect';
+import useLoading from '../../customHooks/useLoading';
 
 const movieapiurl = import.meta.env.VITE_MOVIE_API_URL
 
 function FetchMovieFromApi() {
     const [moviesData, setMovie] = useState([]);
     const [page, setPage] = useState(1);
-    const [isLoading, setIsLoading] = useState(false);
+    const { isLoading, setIsLoading } = useLoading();
 
     useEffect(() => {
         fetchData();
@@ -34,7 +35,7 @@ function FetchMovieFromApi() {
                 setTimeout(() => {
                     setPage(prev => prev + 1);
                     setIsLoading(false);
-                }, 2500);
+                }, 1000);
             }
         };
 

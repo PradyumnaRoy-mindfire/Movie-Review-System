@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import LoadingEffect from "../animation/LoadingEffect";
 import FetchMovieDetailsFromApi from "../api/FetchMovieDetailsFromApi";
-import FetchMovieVideosFromApi from "../api/FetchMovieVideosFromApi";
 import Navbar from "../Navbar";
 import FavouriteButton from "../FavouriteButton";
-const API_KEY = import.meta.env.VITE_MOVIE_API_KEY
+import MovieVideos from "../MovieVideos";
+import LoadingEffect from "../animation/LoadingEffect";
+const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
+const imdbBaseUrl = import.meta.env.VITE_IMDB_BASE_URL;
 
 
 const MovieDetails = () => {
@@ -15,14 +16,10 @@ const MovieDetails = () => {
   const {state} = useLocation();
   const genres = state.genres;
 
-  const { movie } =  FetchMovieDetailsFromApi(id);
-  const { videos } = FetchMovieVideosFromApi(id);
-  
+  const { movie, isLoading } =  FetchMovieDetailsFromApi(id);
 
   console.log(movie);
-  console.log(videos[0]);
-
-  const imageBaseUrl = "https://image.tmdb.org/t/p/";
+ 
   const backdropUrl = movie.backdrop_path ? `${imageBaseUrl}original${movie.backdrop_path}` : null;
   const posterUrl = movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}` : null;
 
@@ -189,7 +186,7 @@ const MovieDetails = () => {
               )}
               {movie.imdb_id && (
                 <a
-                  href={`https://www.imdb.com/title/${movie.imdb_id}`}
+                  href={`${imdbBaseUrl}${movie.imdb_id}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold transition"
@@ -200,7 +197,12 @@ const MovieDetails = () => {
             </div>
           </div>
         </div>
+      <div className="mt-5 ">
+        <MovieVideos id={movie.id} />
       </div>
+      </div>
+              {/* Loading Effect show */}
+      {isLoading && (<LoadingEffect />)}
 
       {/* Bottom Spacing */}
       <div className="h-20"></div>
