@@ -1,30 +1,33 @@
-import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import LoadingEffect from "../animation/LoadingEffect";
-import FetchMovieDetailsFromApi from "../api/FetchMovieDetailsFromApi";
-const API_KEY = import.meta.env.VITE_MOVIE_API_KEY 
-
+import useLoading from "../../customHooks/useLoading";
+const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 const FetchMovieVideosFromApi = (id) => {
-    const movieVideosApiUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`
+    const movieVideosApiUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
     const [videos, setVideos] = useState([]);
-    const [isLoading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setLoading(true);
-        fetch(movieVideosApiUrl)
-        .then(res => res.json())
-        .then(data => {
-            setVideos(data.results);
-            setLoading(false);
-        })
-        .catch(err => {
-            console.error(err);
-            setLoading(false);
-        });
-    }, [id]);
+    const { isLoading, setIsLoading } = useLoading();
     
-  return { videos }
+    useEffect(() => {
+        async function fetchData() {
+            setIsLoading(true);
+            try {
+                const response = await fetch(movieVideosApiUrl);
+                const data = await response.json();
+                setVideos(data.results || []);
+            } catch (error) {
+                console.error("Error fetching movie videos:", error);
+                setVideos([]); 
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        if (id) {
+            fetchData();
+        }
+    }, [id]);
+
+    return { videos, isLoading };
 }
 
-export default FetchMovieVideosFromApi
+export default FetchMovieVideosFromApi;

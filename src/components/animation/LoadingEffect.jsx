@@ -1,7 +1,7 @@
 import { ThreeDot } from 'react-loading-indicators';
 const LoadingEffect = () => {
     const loadingEffect = (
-        <ThreeDot color="#ffffff" size="large" text="Loading..." textColor="" />
+        <ThreeDot color="#ffffff" size="large" text="Please wait..." textColor="" />
     );
   return (
      <div

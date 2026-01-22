@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import styles from '../css/movieCard.module.css';
 import FavouriteButton from './FavouriteButton';
 import GenreData from './api/FetchGenresFromApi';
+const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL
 
 const MovieCard = ({ movie }) => {
-    const imageBase = "https://image.tmdb.org/t/p/w500";
+    const imageBase = `${imageBaseUrl}w500`;
     //fetching the genredata from the api
     const { genres, genreNameIdMap } = GenreData();
 

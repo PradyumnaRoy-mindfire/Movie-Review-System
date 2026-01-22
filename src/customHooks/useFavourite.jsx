@@ -1,42 +1,48 @@
-import { calcGeneratorDuration } from "motion";
-import { useState,useEffect ,useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import toast from 'react-hot-toast';
 
 function useFavourite() {
-    const [favourites, setFavourites] = useState([]);
-    const isFirstRender = useRef(true); 
-
-        //on mount
-    useEffect(() => {
-        const storedFavourites = localStorage.getItem('movieFavourites');
-        if (storedFavourites) {
-            setFavourites(JSON.parse(storedFavourites));
+    const [favourites, setFavourites] = useState(() => {
+        try {
+            const storedFavourites = localStorage.getItem('movieFavourites');
+            return storedFavourites ? JSON.parse(storedFavourites) : [];
+        } catch (error) {
+            console.error('Error loading favourites:', error);
+            return [];
         }
-    }, []);
-
-        //whenever we chnage toggle favourite button 
-    useEffect(() => {
-        //this ref use effect is used because the favourite state is initially set to an empty array, and this useEffect runs first, so the empty array is saved to local storage,and previous data will be lost, that's why we use isFirstRender to skipp saving on first render
-        if (isFirstRender.current) {
-            isFirstRender.current = false; 
-            return; // Skip saving on first render
-        }
-        localStorage.setItem('movieFavourites', JSON.stringify(favourites));
-    }, [favourites]);
+    });
     
-
-    function toggleFavourite(movie) {
-        const isFav = favourites.some(fav => (fav.id === movie.id))
-        if(isFav) {
-            setFavourites(favourites.filter(fav => fav.id !== movie.id));
-            showRemoveFromFavouriteToast(movie.title); 
-        }
-        else {
-            showAddToFavouriteToast(movie.title);
-            setFavourites(prev => [...prev, movie]);
-        }
-    }
-
+    const toggleFavourite = useCallback((movie) => {
+        setFavourites(currentFavourites => {
+            let latestFavourites;
+            try {
+                const stored = localStorage.getItem('movieFavourites');
+                latestFavourites = stored ? JSON.parse(stored) : [];
+            } catch (error) {
+                latestFavourites = currentFavourites;
+            }
+            
+            const isFav = latestFavourites.some(fav => fav.id === movie.id);
+            
+            let updatedFavourites;
+            if (isFav) {
+                updatedFavourites = latestFavourites.filter(fav => fav.id !== movie.id);
+                showRemoveFromFavouriteToast(movie.title);
+            } else {
+                updatedFavourites = [...latestFavourites, movie];
+                showAddToFavouriteToast(movie.title);
+            }
+            
+            try {
+                localStorage.setItem('movieFavourites', JSON.stringify(updatedFavourites));
+            } catch (error) {
+                console.error('Error saving favourites:', error);
+            }
+            
+            return updatedFavourites;
+        });
+    }, []);
+    
     const showAddToFavouriteToast = (title) => {
         toast.success(
             <span>
@@ -47,7 +53,7 @@ function useFavourite() {
             }
         );
     };
-
+    
     const showRemoveFromFavouriteToast = (title) => {
         toast.error(
             <span>
@@ -58,12 +64,12 @@ function useFavourite() {
             }
         );
     };
-
-    const isFavourite = (movie) => {
+    
+    const isFavourite = useCallback((movie) => {
         return favourites.some(fav => fav.id === movie.id);
-    }
-
-    return {favourites, toggleFavourite, isFavourite}
+    }, [favourites]);
+    
+    return { favourites, toggleFavourite, isFavourite }
 }
 
-export default useFavourite
+export default useFavourite;
