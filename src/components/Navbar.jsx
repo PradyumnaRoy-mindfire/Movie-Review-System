@@ -21,7 +21,7 @@ function Navbar() {
           <div className={styles.navbarLinks}>
             <Link to="/" className={styles.navLink}>Home</Link>
             <Link to="/favourites" className={styles.navLink}>Favourites</Link>
-            <Link to="/about" className={styles.navLink}>About</Link>
+            <Link to="/about-us" className={styles.navLink}>About Us</Link>
           </div>
         </div>
       </nav>

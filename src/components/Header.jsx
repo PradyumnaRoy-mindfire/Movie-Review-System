@@ -15,7 +15,10 @@ function Header() {
 
       <div className={styles.heroSection}>
         <div className={styles.heroOverlay}></div>
+        <h1  className="text-white z-10 text-8xl text-center">CINEFLIX</h1>
       </div>
+
+      
 
       <CircularText
         text="Welcome*To*CINEFLIX*"
