@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  react-app:
+    build: .
+    container_name: movie_review_system_react
+    ports:
+      - "5173:5173"
