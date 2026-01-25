@@ -1,10 +1,10 @@
-import { useParams } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useParams,useLocation } from "react-router-dom";
 import FetchMovieDetailsFromApi from "../api/FetchMovieDetailsFromApi";
 import Navbar from "../Navbar";
 import FavouriteButton from "../FavouriteButton";
 import MovieVideos from "../MovieVideos";
 import LoadingEffect from "../animation/LoadingEffect";
+import FadeInAnimation from "../animation/FadeInAnimation";
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const imdbBaseUrl = import.meta.env.VITE_IMDB_BASE_URL;
 
@@ -40,6 +40,7 @@ const MovieDetails = () => {
   return (
     <>
       <Navbar/>
+    <FadeInAnimation type="movieDetails">
     <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom right, #111827, #581c87, #111827)' }}>
       {/* Backdrop Section */}
       {backdropUrl && (
@@ -207,6 +208,7 @@ const MovieDetails = () => {
       {/* Bottom Spacing */}
       <div className="h-20"></div>
     </div>
+    </FadeInAnimation>
     </>
   )
 }
