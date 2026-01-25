@@ -5,6 +5,7 @@ import Favourite from "./components/pages/Favourite";
 import Error404NotFound from "./components/pages/Error404NotFound";
 import { Toaster } from 'react-hot-toast';
 import MovieDetails from "./components/pages/MovieDetails";
+import AboutUs from "./components/pages/AboutUs";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/favourites" element={<Favourite />} />
         <Route path="/movies/:id/details" element={<MovieDetails />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="*" element={<Error404NotFound />} />
       </Routes>
     </BrowserRouter>
