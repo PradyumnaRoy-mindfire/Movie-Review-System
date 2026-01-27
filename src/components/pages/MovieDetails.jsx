@@ -1,10 +1,11 @@
 import { useParams,useLocation } from "react-router-dom";
 import FetchMovieDetailsFromApi from "../api/FetchMovieDetailsFromApi";
 import Navbar from "../Navbar";
-import FavouriteButton from "../FavouriteButton";
-import MovieVideos from "../MovieVideos";
+import FavouriteButton from "../addToFavourite/FavouriteButton";
+import MovieVideos from "../seeMovieDetails/MovieVideos";
 import LoadingEffect from "../animation/LoadingEffect";
 import FadeInAnimation from "../animation/FadeInAnimation";
+
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const imdbBaseUrl = import.meta.env.VITE_IMDB_BASE_URL;
 

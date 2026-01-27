@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import styles from '../css/movieCard.module.css';
-import FavouriteButton from './FavouriteButton';
-import GenreData from './api/FetchGenresFromApi';
+import styles from '../../css/movieCard.module.css';
+import FavouriteButton from "../addToFavourite/FavouriteButton";
+import GenreData from '../api/FetchGenresFromApi';
+
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL
+const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL
 
 const MovieCard = ({ movie }) => {
     const imageBase = `${imageBaseUrl}w500`;
@@ -14,7 +16,7 @@ const MovieCard = ({ movie }) => {
             <Link to={`/movies/${movie.id}/details`} state={{ genres }}>
                 <div className={styles.movieCard}>
                     <img
-                        src={imageBase + movie.poster_path}
+                        src={movie.poster_path ? imageBase + movie.poster_path : placeholderImageUrl}
                         alt={movie.title}
                         className={styles.moviePoster}
                     />

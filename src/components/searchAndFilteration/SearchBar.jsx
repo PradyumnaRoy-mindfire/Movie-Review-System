@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function SearchBar({ searchQuery, onSearchChange }) {
     const [inputValue, setInputValue] = useState(searchQuery);
