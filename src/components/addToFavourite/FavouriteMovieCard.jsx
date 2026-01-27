@@ -1,7 +1,7 @@
 import { Star, Calendar, Grip } from 'lucide-react';
 import FavouriteButton from './FavouriteButton';
 import { Link } from 'react-router-dom';
-import GenreData from './api/FetchGenresFromApi';
+import GenreData from '../api/FetchGenresFromApi';
 import { useState } from 'react';
 
 const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {

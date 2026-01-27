@@ -1,4 +1,3 @@
-import React from 'react';
 import FetchGenreData from "../api/FetchGenresFromApi";
 
 function GenreFilter({ selectedGenre, onGenreChange }) {

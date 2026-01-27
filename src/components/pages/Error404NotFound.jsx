@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Home, Search, ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {

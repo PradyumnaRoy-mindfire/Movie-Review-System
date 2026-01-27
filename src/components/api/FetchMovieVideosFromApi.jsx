@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useLoading from "../../customHooks/useLoading";
+
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 const FetchMovieVideosFromApi = (id) => {

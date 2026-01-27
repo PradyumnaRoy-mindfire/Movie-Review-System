@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CategoryFilter({ selectedCategory, onCategoryChange }) {
     const categories = [
         { id: 'popular', name: 'Popular', icon: '🔥' },

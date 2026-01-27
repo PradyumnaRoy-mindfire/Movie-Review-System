@@ -1,4 +1,3 @@
-import React from 'react'
 import FavouriteMovieCard from './FavouriteMovieCard';
 
 const DropZone = ({ title, movies, onDrop, onDragOver, onDragStart, onDragEnd, isEmpty }) => {

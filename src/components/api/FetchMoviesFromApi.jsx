@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import MovieCard from "../MovieCard";
+import MovieCard from "../seeMovieDetails/MovieCard";
 import LoadingEffect from '../animation/LoadingEffect';
 import useLoading from '../../customHooks/useLoading';
-import GenreFilter from '../SearchAndFilteration/GenreFilter';
-import SearchBar from '../SearchAndFilteration/SearchBar';
-import CategoryFilter from '../SearchAndFilteration/CategoryFilter';
+import GenreFilter from '../searchAndFilteration/GenreFilter';
+import SearchBar from '../searchAndFilteration/SearchBar';
+import CategoryFilter from '../searchAndFilteration/CategoryFilter';
 
 const movieapiurl = import.meta.env.VITE_MOVIE_API_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;

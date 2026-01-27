@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import FetchMovieVideosFromApi from "./api/FetchMovieVideosFromApi";
-import LoadingEffect from "./animation/LoadingEffect";
+import FetchMovieVideosFromApi from "../api/FetchMovieVideosFromApi";
+import LoadingEffect from "../animation/LoadingEffect";
 import VideoModal from "./VideoModal";
-import FadeInAnimation from "./animation/FadeInAnimation";
+import FadeInAnimation from "../animation/FadeInAnimation";
 
 const MovieVideos = ({ id }) => {
   const { videos, isLoading } = FetchMovieVideosFromApi(id);
