@@ -98,7 +98,7 @@ const MovieVideos = ({ id }) => {
           <h2 className="text-2xl font-bold text-white mb-4">{category}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {categorizedVideos[category].map((video) => (
-              <FadeInAnimation key={video.key} type="movieVideos">
+              <FadeInAnimation key={video.key} type={"movieVideos"}>
                 <div
                   key={video.id}
                   onClick={() => handleVideoClick(video)}

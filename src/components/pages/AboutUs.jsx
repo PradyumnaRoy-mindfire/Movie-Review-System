@@ -1,7 +1,8 @@
-import React from 'react';
 import { Film, Heart, Search, Star, TrendingUp, Users, Zap, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../Navbar';
+import FadeInAnimation from '../animation/FadeInAnimation';
+import StaggeredLetterAnimation from '../animation/StaggeredLetterAnimation';
 
 export default function AboutUs() {
   const features = [
@@ -70,6 +71,7 @@ export default function AboutUs() {
   return (
     <>
     <Navbar />
+    
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
@@ -82,30 +84,33 @@ export default function AboutUs() {
             backgroundPosition: 'center'
           }}
         ></div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <div className="inline-flex items-center gap-2 bg-purple-600 bg-opacity-30 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-purple-500">
-            <Film className="w-5 h-5" />
-            <span className="text-sm font-semibold">CineFlix Movie Platform</span>
+        <FadeInAnimation type={'movieDetails'}>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <div className="inline-flex items-center gap-2 bg-purple-600 bg-opacity-30 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-purple-500">
+              <Film className="w-5 h-5" />
+              <span className="text-sm font-semibold">CineFlix Movie Platform</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
+            <StaggeredLetterAnimation>
+              Your Ultimate Movie Companion
+            </StaggeredLetterAnimation>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
+              Discover, organize, and explore the world of cinema like never before. CineFlix brings you an immersive movie browsing experience.
+            </p>
+            
+            <div className="flex gap-4 justify-center">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105">
+                Get Started
+              </button>
+              <button className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 px-8 py-3 rounded-full font-semibold transition-all">
+                Learn More
+              </button>
+            </div>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-            Your Ultimate Movie Companion
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8">
-            Discover, organize, and explore the world of cinema like never before. CineFlix brings you an immersive movie browsing experience.
-          </p>
-          
-          <div className="flex gap-4 justify-center">
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-3 rounded-full font-semibold transition-all transform hover:scale-105">
-              Get Started
-            </button>
-             <button className="bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 px-8 py-3 rounded-full font-semibold transition-all">
-              Learn More
-            </button>
-          </div>
-        </div>
+        </FadeInAnimation>
       </div>
 
       {/* Stats Section */}
@@ -141,6 +146,7 @@ export default function AboutUs() {
 
       {/* Features Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <FadeInAnimation type={'movieDetails'}>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Platform Features</h2>
           <p className="text-gray-400 text-lg">Everything you need for the perfect movie discovery experience</p>
@@ -160,10 +166,12 @@ export default function AboutUs() {
             </div>
           ))}
         </div>
+        </FadeInAnimation>
       </div>
 
       {/* Team Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <FadeInAnimation type={'movieDetails'}>
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-purple-600 bg-opacity-20 backdrop-blur-sm px-4 py-2 rounded-full mb-4 border border-purple-500">
             <Users className="w-5 h-5" />
@@ -192,10 +200,12 @@ export default function AboutUs() {
             </div>
           ))}
         </div>
+        </FadeInAnimation>
       </div>
 
       {/* CTA Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <FadeInAnimation type={'movieDetails'}>
         <div className="relative overflow-hidden rounded-3xl">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-90"></div>
           <div 
@@ -217,6 +227,7 @@ export default function AboutUs() {
             </Link>
           </div>
         </div>
+        </FadeInAnimation>
       </div>
     </div>
     </>

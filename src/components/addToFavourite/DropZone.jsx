@@ -1,4 +1,5 @@
 import FavouriteMovieCard from './FavouriteMovieCard';
+import FadeInAnimation from '../animation/FadeInAnimation';
 
 const DropZone = ({ title, movies, onDrop, onDragOver, onDragStart, onDragEnd, isEmpty }) => {
   return (
@@ -21,12 +22,14 @@ const DropZone = ({ title, movies, onDrop, onDragOver, onDragStart, onDragEnd, i
           </div>
         ) : (
           movies.map((movie) => (
-            <FavouriteMovieCard
-              key={movie.id}
-              movie={movie}
-              onDragStart={onDragStart(movie)}
-              onDragEnd={onDragEnd}
-            />
+            <FadeInAnimation type={'movieDetails'}>
+              <FavouriteMovieCard
+                key={movie.id}
+                movie={movie}
+                onDragStart={onDragStart(movie)}
+                onDragEnd={onDragEnd}
+              />
+            </FadeInAnimation>
           ))
         )}
       </div>

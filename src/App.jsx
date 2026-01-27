@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Genres from './components/api/FetchGenresFromApi';
 import Home from "./components/pages/Home";
 import Favourite from "./components/pages/Favourite";
 import Error404NotFound from "./components/pages/Error404NotFound";
