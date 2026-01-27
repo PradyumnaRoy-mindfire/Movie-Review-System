@@ -1,7 +1,7 @@
 //for text animation of the logo 
 import TextType from './animation/TextType';
 import styles from '../css/header.module.css'
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -19,9 +19,9 @@ function Navbar() {
           </div>
 
           <div className={styles.navbarLinks}>
-            <Link to="/" className={styles.navLink}>Home</Link>
-            <Link to="/favourites" className={styles.navLink}>Favourites</Link>
-            <Link to="/about-us" className={styles.navLink}>About Us</Link>
+            <NavLink to="/" className={({ isActive })=> `${styles.navLink} ${isActive ? styles.activeLink : ""}`}>Home</NavLink>
+            <NavLink to="/favourites" className={({ isActive })=> `${styles.navLink} ${isActive ? styles.activeLink : ""}`}>Favourites</NavLink>
+            <NavLink to="/about-us" className={({ isActive })=> `${styles.navLink} ${isActive ? styles.activeLink : ""}`}>About Us</NavLink>
           </div>
         </div>
       </nav>
