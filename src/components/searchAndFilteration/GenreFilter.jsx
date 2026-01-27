@@ -5,7 +5,7 @@ function GenreFilter({ selectedGenre, onGenreChange }) {
 
     return (
         <div className="w-[85%] mb-8">
-            <h2 className="text-2xl font-bold mb-4 text-white">Filter by Genre</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Filter by Genres</h2>
             <div className="flex flex-wrap gap-3">
                 <button
                     onClick={() => onGenreChange(null)}

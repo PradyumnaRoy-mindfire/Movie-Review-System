@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Favourite from "./components/pages/Favourite";
-import Error404NotFound from "./components/pages/Error404NotFound";
+import Home from "./pages/Home";
+import Favourite from "./pages/Favourite";
+import Error404NotFound from "./pages/Error404NotFound";
 import { Toaster } from 'react-hot-toast';
-import MovieDetails from "./components/pages/MovieDetails";
-import AboutUs from "./components/pages/AboutUs";
+import MovieDetails from "./pages/MovieDetails";
+import AboutUs from "./pages/AboutUs";
 
 function App() {
   return (
