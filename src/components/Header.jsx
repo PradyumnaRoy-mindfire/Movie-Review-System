@@ -16,7 +16,7 @@ function Header() {
         <div className={styles.heroOverlay}></div>
         <h1  className="text-white z-2 text-8xl text-center">CINEFLIX</h1>
       </div>
-
+      
       
 
       <CircularText
