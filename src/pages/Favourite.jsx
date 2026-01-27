@@ -1,8 +1,8 @@
-import useFavourite from '../../customHooks/useFavourite'
-import Navbar from "../Navbar.jsx";
+import useFavourite from '../customHooks/useFavourite'
+import Navbar from "../components/Navbar";
 import { useState, useEffect } from 'react';
 import { Grip } from 'lucide-react';
-import DropZone from '../addToFavourite/DropZone';
+import DropZone from '../components/addToFavourite/DropZone';
 
 const Favourite = () => {
   const { favourites } = useFavourite();

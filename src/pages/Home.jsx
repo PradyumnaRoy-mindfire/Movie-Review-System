@@ -1,5 +1,5 @@
-import FetchMoviesFromApi from '../api/FetchMoviesFromApi';
-import Header from '../Header';
+import FetchMoviesFromApi from '../components/api/FetchMoviesFromApi';
+import Header from '../components/Header';
 
 const Home = () => {
   return (

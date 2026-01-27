@@ -1,8 +1,8 @@
 import { Film, Heart, Search, Star, TrendingUp, Users, Zap, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import Navbar from '../Navbar';
-import FadeInAnimation from '../animation/FadeInAnimation';
-import StaggeredLetterAnimation from '../animation/StaggeredLetterAnimation';
+import Navbar from '../components/Navbar';
+import FadeInAnimation from '../components/animation/FadeInAnimation';
+import StaggeredLetterAnimation from '../components/animation/StaggeredLetterAnimation';
 
 export default function AboutUs() {
   const features = [
