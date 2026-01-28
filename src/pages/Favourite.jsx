@@ -1,7 +1,7 @@
-import useFavourite from '../customHooks/useFavourite'
-import Navbar from "../components/Navbar";
 import { useState, useEffect } from 'react';
 import { Grip } from 'lucide-react';
+import useFavourite from '../customHooks/useFavourite'
+import Navbar from "../components/Navbar";
 import DropZone from '../components/addToFavourite/DropZone';
 
 const Favourite = () => {
@@ -72,7 +72,7 @@ const Favourite = () => {
   };
 
   return (
-    <div className="w-full min-h-screen" style={{ background: 'linear-gradient(to bottom right, #111827, #581c87, #111827)' }}>
+    <div className="w-full min-h-screen bg-gradient-to-br from-gray-700 via-purple-900 to-gray-700">
       <Navbar />
       
       <div className="mx-auto px-4 py-8 pt-24">

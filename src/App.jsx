@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from 'react-hot-toast';
 import Home from "./pages/Home";
 import Favourite from "./pages/Favourite";
 import Error404NotFound from "./pages/Error404NotFound";
-import { Toaster } from 'react-hot-toast';
 import MovieDetails from "./pages/MovieDetails";
 import AboutUs from "./pages/AboutUs";
 

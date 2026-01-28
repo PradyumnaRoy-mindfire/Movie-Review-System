@@ -1,16 +1,17 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Star, Calendar, Grip } from 'lucide-react';
 import FavouriteButton from './FavouriteButton';
-import { Link } from 'react-router-dom';
 import GenreData from '../api/FetchGenresFromApi';
-import { useState } from 'react';
 
+const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL;
 
 const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
-  const {genres, genreNameIdMap } = GenreData();
+  const { genres } = GenreData();
 
   const imageUrl = movie.poster_path 
-    ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
+    ? `${imageBaseUrl}w200${movie.poster_path}`
     : placeholderImageUrl;
 
   const [hidden, setHidden] = useState(false);
@@ -37,7 +38,7 @@ const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
               alt={movie.title}
               className="w-16 h-24 object-cover rounded flex-shrink-0"
               onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/200x300?text=No+Image';
+                e.target.src = placeholderImageUrl;
               }}
             />
           </Link>

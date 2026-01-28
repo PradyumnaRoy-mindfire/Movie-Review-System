@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Home, Search, ArrowLeft } from 'lucide-react';
+import { Home, ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isHomeHovering, setIsHomeHovering] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -19,96 +20,25 @@ export default function NotFound() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4 relative">
-      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div
-          className="absolute w-96 h-96 rounded-full opacity-20"
-          style={{
-            top: '20%',
-            left: '10%',
-            background: 'radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            animation: 'blob 7s infinite'
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 rounded-full opacity-20"
-          style={{
-            top: '40%',
-            right: '10%',
-            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            animation: 'blob 7s infinite 2s'
-          }}
-        />
-        <div
-          className="absolute w-96 h-96 rounded-full opacity-20"
-          style={{
-            bottom: '20%',
-            left: '30%',
-            background: 'radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            animation: 'blob 7s infinite 4s'
-          }}
-        />
+        <div className="absolute top-[20%] left-[10%] w-96 h-96 rounded-full opacity-20 bg-purple-500/40 blur-[60px] animate-blob" />
+        <div className="absolute top-[40%] right-[10%] w-96 h-96 rounded-full opacity-20 bg-blue-500/40 blur-[60px] animate-blob-delayed-2s" />
+        <div className="absolute bottom-[20%] left-[30%] w-96 h-96 rounded-full opacity-20 bg-pink-500/40 blur-[60px] animate-blob-delayed-4s" />
       </div>
 
-      <style>{`
-        @keyframes blob {
-          0%, 100% { 
-            transform: translate(0, 0) scale(1); 
-          }
-          33% { 
-            transform: translate(30px, -50px) scale(1.1); 
-          }
-          66% { 
-            transform: translate(-20px, 20px) scale(0.9); 
-          }
-        }
-        @keyframes float {
-          0%, 100% { 
-            transform: translateY(0px); 
-          }
-          50% { 
-            transform: translateY(-20px); 
-          }
-        }
-        .animate-float {
-          animation: float 3s ease-in-out infinite;
-        }
-        .glass-effect {
-          background: rgba(255, 255, 255, 0.05);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-        }
-      `}</style>
-
       <div className="relative z-10 text-center max-w-2xl mx-auto">
-        {/* 404 Number with parallax effect */}
         <div
-          className="relative mb-8 animate-float"
+          className="relative mb-8 animate-float transition-transform duration-300 ease-out"
           style={{
-            transform: `translate(${offsetX}px, ${offsetY}px)`,
-            transition: 'transform 0.3s ease-out'
+            transform: `translate(${offsetX}px, ${offsetY}px)`
           }}
         >
-          <h1
-            className="text-9xl md:text-[12rem] font-bold leading-none tracking-tight"
-            style={{
-              background: 'linear-gradient(to right, rgb(192, 132, 252), rgb(244, 114, 182), rgb(96, 165, 250))',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 25px 25px rgb(0 0 0 / 0.15))'
-            }}
-          >
+          <h1 className="text-9xl md:text-[12rem] font-bold leading-none tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_25px_25px_rgb(0_0_0/0.15)]">
             404
           </h1>
-
         </div>
 
-        {/* Main content */}
-        <div className="glass-effect p-16 rounded-3xl shadow-2xl h-80" >
+        <div className="bg-white/5 backdrop-blur-lg p-16 rounded-3xl shadow-2xl h-80">
           <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-2.5">
             Oops! Page Not Found
           </h2>
@@ -117,50 +47,39 @@ export default function NotFound() {
             Let's get you back on track.
           </p>
 
-          <div className="pt-1 mt-[50px]" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}></div>
+          <div className="pt-1 mt-[50px] border-t border-white/10"></div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6" >
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-6">
             <button
               onClick={() => window.history.back()}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className="group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300 glass-effect w-[180px] h-[30px] justify-center"
-              style={{
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-                transform: isHovering ? 'scale(1.05)' : 'scale(1)'
-              }}
+              className={`group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300 bg-white/5 backdrop-blur-lg w-[180px] h-[30px] justify-center border border-white/20 ${
+                isHovering ? 'scale-105' : 'scale-100'
+              }`}
             >
               <ArrowLeft
-                className="w-5 h-5 transition-transform duration-300"
-                style={{ transform: isHovering ? 'translateX(-4px)' : 'translateX(0)' }}
+                className={`w-5 h-5 transition-transform duration-300 ${
+                  isHovering ? '-translate-x-1' : 'translate-x-0'
+                }`}
               />
               Go Back
             </button>
 
             <button
               onClick={() => window.location.href = '/'}
-              className="group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300  w-[180px] h-[30px] justify-center"
-              style={{
-                background: 'linear-gradient(to right, rgb(168, 85, 247), rgb(59, 130, 246))',
-                boxShadow: '0 10px 40px rgba(168, 85, 247, 0.3)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(to right, rgb(147, 51, 234), rgb(37, 99, 235))';
-                e.currentTarget.style.transform = 'scale(1.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'linear-gradient(to right, rgb(168, 85, 247), rgb(59, 130, 246))';
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
+              onMouseEnter={() => setIsHomeHovering(true)}
+              onMouseLeave={() => setIsHomeHovering(false)}
+              className={`group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300 w-[180px] h-[30px] justify-center bg-gradient-to-r from-purple-600 to-blue-600 shadow-[0_10px_40px_rgba(168,85,247,0.3)] ${
+                isHomeHovering ? 'scale-105 from-purple-700 to-blue-700' : 'scale-100'
+              }`}
             >
               <Home className="w-5 h-5" />
               Home Page
             </button>
           </div>
-
         </div>
 
-        {/* Error code */}
         <p className="mt-2 text-gray-500 text-sm">
           Error Code: 404 | Page Not Found
         </p>
