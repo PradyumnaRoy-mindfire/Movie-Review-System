@@ -40,7 +40,6 @@ const MovieDetails = () => {
   return (
     <>
       <Navbar/>
-    <FadeInAnimation type="movieDetails">
     <div className="min-h-screen bg-gradient-to-br from-gray-700 via-purple-900 to-gray-700">
       {/* Backdrop Section */}
       {backdropUrl && (
@@ -70,6 +69,7 @@ const MovieDetails = () => {
 
           {/* Movie Info */}
           <div className="flex-1 text-white">
+            <FadeInAnimation type="movieDetails">
             <h1 className="text-5xl font-bold mb-2">{movie.title}</h1>
             {movie.tagline && (
               <p className="text-xl italic text-gray-300 mb-4">"{movie.tagline}"</p>
@@ -128,7 +128,7 @@ const MovieDetails = () => {
                 </div>
               )}
             </div>
-
+           
             {/* Production Companies */}
             {movie.production_companies?.length > 0 && (
               <div className="mb-6">
@@ -196,6 +196,7 @@ const MovieDetails = () => {
                 </a>
               )}
             </div>
+         </FadeInAnimation>
           </div>
         </div>
       <div className="mt-5 ">
@@ -208,7 +209,6 @@ const MovieDetails = () => {
       {/* Bottom Spacing */}
       <div className="h-20"></div>
     </div>
-    </FadeInAnimation>
     </>
   )
 }
