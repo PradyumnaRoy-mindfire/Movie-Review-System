@@ -5,6 +5,7 @@ import useLoading from '../../customHooks/useLoading';
 import GenreFilter from '../searchAndFilteration/GenreFilter';
 import SearchBar from '../searchAndFilteration/SearchBar';
 import CategoryFilter from '../searchAndFilteration/CategoryFilter';
+import { logError } from "../../utils/errorLogger";
 
 const movieapiurl = import.meta.env.VITE_MOVIE_API_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
@@ -63,7 +64,7 @@ function FetchMovieFromApi() {
                 setMovie(prev => [...prev, ...(response.results || [])]);
             }
         } catch (error) {
-            console.error('Error fetching movies:', error);
+            logError(error,':Error fetching movies');
         }
         
         setIsLoading(false);

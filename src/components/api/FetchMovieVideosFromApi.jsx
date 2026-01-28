@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { logError } from "../../utils/errorLogger";
 import useLoading from "../../customHooks/useLoading";
 
+const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 const FetchMovieVideosFromApi = (id) => {
-    const movieVideosApiUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}`;
+    const movieVideosApiUrl = `${movieBaseUrl}/movie/${id}/videos?api_key=${API_KEY}`;
     const [videos, setVideos] = useState([]);
     const { isLoading, setIsLoading } = useLoading();
     
@@ -16,7 +18,7 @@ const FetchMovieVideosFromApi = (id) => {
                 const data = await response.json();
                 setVideos(data.results || []);
             } catch (error) {
-                console.error("Error fetching movie videos:", error);
+                logError(error,':Error fetching movie videos');
                 setVideos([]); 
             } finally {
                 setIsLoading(false);
