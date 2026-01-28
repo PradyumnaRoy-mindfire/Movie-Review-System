@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import { logError } from "../utils/errorLogger";
 import toast from 'react-hot-toast';
 
 function useFavourite() {
@@ -7,7 +8,7 @@ function useFavourite() {
             const storedFavourites = localStorage.getItem('movieFavourites');
             return storedFavourites ? JSON.parse(storedFavourites) : [];
         } catch (error) {
-            console.error('Error loading favourites:', error);
+            logError(error, ':Error loading favourites');
             return [];
         }
     });
@@ -36,7 +37,7 @@ function useFavourite() {
             try {
                 localStorage.setItem('movieFavourites', JSON.stringify(updatedFavourites));
             } catch (error) {
-                console.error('Error saving favourites:', error);
+                logError(error, ':Error saving favourites');
             }
             
             return updatedFavourites;
