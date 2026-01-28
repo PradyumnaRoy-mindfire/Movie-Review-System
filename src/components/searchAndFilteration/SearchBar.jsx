@@ -7,7 +7,7 @@ function SearchBar({ searchQuery, onSearchChange }) {
         const value = e.target.value;
         setInputValue(value);
         
-        // Debounce search - wait for user to stop typing
+        // Debounce search ,wait for user to stop typing
         clearTimeout(window.searchTimeout);
         window.searchTimeout = setTimeout(() => {
             onSearchChange(value);
@@ -35,7 +35,7 @@ function SearchBar({ searchQuery, onSearchChange }) {
                     placeholder="Search for movies..."
                     value={inputValue}
                     onChange={handleInputChange}
-                    className="w-full pl-12 pr-4 py-2 bg-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500 text-gray-800 placeholder-gray-500 text-lg shadow-lg"
+                    className="w-full pl-12 pr-4 py-2 bg-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-400 text-gray-800 placeholder-gray-500 text-lg shadow-lg"
                 />
             </div>
         </div>

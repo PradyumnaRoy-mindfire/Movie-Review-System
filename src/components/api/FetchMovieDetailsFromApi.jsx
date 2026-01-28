@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import useLoading from '../../customHooks/useLoading';
 
+const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 const FetchMovieDetailsFromApi = (id) => {
-    const movieDetailsApiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+    const movieDetailsApiUrl = `${movieBaseUrl}/movie/${id}?api_key=${API_KEY}`
     const [movie, setMovie] = useState('');
     const { isLoading, setIsLoading } = useLoading();
     

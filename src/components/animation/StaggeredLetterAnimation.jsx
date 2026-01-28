@@ -1,6 +1,4 @@
-// import { motion } from "motion/react";
-import { motion } from "framer-motion";
-
+import { motion } from "motion/react";
 
 const StaggeredLetterAnimation = ({children}) => {
     const letters = Array.from(children);

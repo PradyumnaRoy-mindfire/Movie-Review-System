@@ -77,12 +77,7 @@ export default function AboutUs() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div 
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&h=900&fit=crop')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
+          className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=1600&h=900&fit=crop')] bg-cover bg-center"
         ></div>
         <FadeInAnimation type={'movieDetails'}>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
@@ -209,12 +204,7 @@ export default function AboutUs() {
         <div className="relative overflow-hidden rounded-3xl">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-90"></div>
           <div 
-            className="absolute inset-0 opacity-20"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&h=600&fit=crop')",
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
+            className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=1600&h=600&fit=crop')] bg-cover bg-center"
           ></div>
           
           <div className="relative px-8 py-16 text-center">

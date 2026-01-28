@@ -25,7 +25,7 @@ const MovieCard = ({ movie }) => {
                         <h3 className={styles.movieTitle}>{movie.title}</h3>
 
                         <div className={styles.movieCategories}>
-                            {movie.genre_ids.slice(0, 3).map((id) => (
+                            {movie.genre_ids?.slice(0, 3).map((id) => (
                                 <span key={id} className={styles.categoryTag}>
                                     {genreNameIdMap[id]}
                                 </span>

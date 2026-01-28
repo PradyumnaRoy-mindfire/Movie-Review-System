@@ -4,13 +4,7 @@ import Header from '../components/Header';
 const Home = () => {
   return (
     <>
-      <div style={{
-        background: 'linear-gradient(to bottom right, #111827, #581c87, #111827)',
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignItems: 'center'
-      }}>
+      <div className="bg-gradient-to-br from-gray-700 via-purple-900 to-gray-700 flex flex-wrap justify-center items-center">
           <Header />
           <FetchMoviesFromApi/>
       </div>

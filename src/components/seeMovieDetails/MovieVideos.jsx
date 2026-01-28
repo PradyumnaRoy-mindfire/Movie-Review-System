@@ -18,7 +18,6 @@ const MovieVideos = ({ id }) => {
     4: { name: "Behind the Scenes", priority: 3 }
   };
 
-  // Function to normalize and categorize videos
   const categorizeVideos = () => {
     if (!videos || videos.length === 0) return {};
 
@@ -28,7 +27,7 @@ const MovieVideos = ({ id }) => {
       const videoName = video.name?.toLowerCase() || "";
       let category = null;
 
-      // Check for each type case-insensitive
+      // Check for each type case-insensitive,show accordingly
       if (videoName.includes("teaser")) {
         category = "Teaser";
       } else if (videoName.includes("trailer")) {
@@ -152,7 +151,7 @@ const MovieVideos = ({ id }) => {
         </div>
       ))}
 
-      {/* Video Modal */}
+      {/* Show Video Modal */}
       {selectedVideo && (
         <VideoModal
           selectedVideo={selectedVideo}

@@ -8,6 +8,7 @@ import FadeInAnimation from "../components/animation/FadeInAnimation";
 
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const imdbBaseUrl = import.meta.env.VITE_IMDB_BASE_URL;
+const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL
 
 
 const MovieDetails = () => {
@@ -19,10 +20,8 @@ const MovieDetails = () => {
 
   const { movie, isLoading } =  FetchMovieDetailsFromApi(id);
 
-  console.log(movie);
- 
-  const backdropUrl = movie.backdrop_path ? `${imageBaseUrl}original${movie.backdrop_path}` : null;
-  const posterUrl = movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}` : null;
+  const backdropUrl = movie.backdrop_path ? `${imageBaseUrl}original${movie.backdrop_path}` : placeholderImageUrl;
+  const posterUrl = movie.poster_path ? `${imageBaseUrl}w500${movie.poster_path}` : placeholderImageUrl;
 
   const formatRuntime = (minutes) => {
     const hours = Math.floor(minutes / 60);
@@ -42,7 +41,7 @@ const MovieDetails = () => {
     <>
       <Navbar/>
     <FadeInAnimation type="movieDetails">
-    <div className="min-h-screen" style={{ background: 'linear-gradient(to bottom right, #111827, #581c87, #111827)' }}>
+    <div className="min-h-screen bg-gradient-to-br from-gray-700 via-purple-900 to-gray-700">
       {/* Backdrop Section */}
       {backdropUrl && (
         <div className="relative h-96 overflow-hidden">
