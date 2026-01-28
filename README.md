@@ -130,6 +130,7 @@ Movie-Review-System/
 │   ├── components/      # Reusable components
 │   ├── pages/           # Page components
 │   ├── hooks/           # Custom React hooks
+│   ├── utils/           # Utility functions
 │   ├── styles/          # CSS modules
 │   └── App.jsx          # Root component
 ├── public/              # Static assets
