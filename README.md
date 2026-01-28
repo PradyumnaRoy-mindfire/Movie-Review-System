@@ -38,6 +38,11 @@ A modern, feature-rich movie browsing application built with React that allows u
 - Information about the site
 - Features explained well
 
+### 🚀 Deployment
+
+This project is deployed on Vercel and can be accessed at:
+🔗 [Live Demo](https://cineflix-swart.vercel.app/)
+
 ## 🛠️ Tech Stack
 
 ### Core Technologies
@@ -56,6 +61,13 @@ A modern, feature-rich movie browsing application built with React that allows u
 - **Lucide React 0.555.0** - Icon library
 - **React Hot Toast 2.6.0** - Toast notifications
 - **React Loading Indicators 1.0.1** - Loading states
+
+### Deployment
+- **Platform**: Vercel
+- **Container**: Docker
+- **Web Server**: Nginx
+- **Build**: Multi-stage Docker build
+
 
 ### API
 - **The Movie Database (TMDb) API** - Movie data source
