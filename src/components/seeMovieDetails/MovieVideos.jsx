@@ -15,7 +15,7 @@ const MovieVideos = ({ id }) => {
     1: { name: "Featurette", priority: 4 },
     2: { name: "Trailer", priority: 2 },
     3: { name: "Clip", priority: 5 },
-    4: { name: "Behind the Scenes", priority: 3 }
+    4: { name: "Behind the Scenes", priority: 3 },
   };
 
   const categorizeVideos = () => {
@@ -55,8 +55,10 @@ const MovieVideos = ({ id }) => {
 
   // Sort categoryies by priority
   const sortedCategories = Object.keys(categorizedVideos).sort((a, b) => {
-    const priorityA = Object.values(videoTypeMap).find(v => v.name === a)?.priority || 999;
-    const priorityB = Object.values(videoTypeMap).find(v => v.name === b)?.priority || 999;
+    const priorityA =
+      Object.values(videoTypeMap).find((v) => v.name === a)?.priority || 999;
+    const priorityB =
+      Object.values(videoTypeMap).find((v) => v.name === b)?.priority || 999;
     return priorityA - priorityB;
   });
 
@@ -65,25 +67,23 @@ const MovieVideos = ({ id }) => {
   };
 
   const handleImageError = (videoId) => {
-    setImageErrors(prev => ({ ...prev, [videoId]: true }));
+    setImageErrors((prev) => ({ ...prev, [videoId]: true }));
   };
 
   // Prevent body scroll when modal is open,
   useEffect(() => {
     if (selectedVideo) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [selectedVideo]);
 
   if (isLoading) {
-    return (
-      <LoadingEffect />
-    );
+    return <LoadingEffect />;
   }
 
   if (!videos || videos.length === 0) {
@@ -123,26 +123,24 @@ const MovieVideos = ({ id }) => {
                         </svg>
                       </div>
                     )}
-                    
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                        <svg
-                          className="w-16 h-16 text-white drop-shadow-lg "
-                          fill="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
+                      <svg
+                        className="w-16 h-16 text-white drop-shadow-lg "
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
                     </div>
                   </div>
-                  
+
                   <div className="mt-2">
                     <h3 className="text-white font-semibold text-sm line-clamp-2">
                       {video.name}
                     </h3>
-                    <p className="text-gray-400 text-xs mt-1">
-                      {video.type}
-                    </p>
+                    <p className="text-gray-400 text-xs mt-1">{video.type}</p>
                   </div>
                 </div>
               </FadeInAnimation>

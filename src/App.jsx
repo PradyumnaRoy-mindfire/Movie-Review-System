@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Toaster } from 'react-hot-toast';
+import { Toaster } from "react-hot-toast";
 import Home from "./pages/Home";
 import Favourite from "./pages/Favourite";
 import Error404NotFound from "./pages/Error404NotFound";
@@ -9,14 +9,17 @@ import AboutUs from "./pages/AboutUs";
 function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-right"  toastOptions={{
-        className: '',
-        duration: 5000,
-        removeDelay: 1000,
-        style: {
-          marginTop: '65px',
-        }
-      }}/>
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          className: "",
+          duration: 5000,
+          removeDelay: 1000,
+          style: {
+            marginTop: "65px",
+          },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favourites" element={<Favourite />} />
