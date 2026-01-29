@@ -1,20 +1,30 @@
-import FavouriteMovieCard from './FavouriteMovieCard';
-import FadeInAnimation from '../animation/FadeInAnimation';
+import FavouriteMovieCard from "./FavouriteMovieCard";
+import FadeInAnimation from "../animation/FadeInAnimation";
 
-const DropZone = ({ title, movies, onDrop, onDragOver, onDragStart, onDragEnd, isEmpty }) => {
+const DropZone = ({
+  title,
+  movies,
+  onDrop,
+  onDragOver,
+  onDragStart,
+  onDragEnd,
+  isEmpty,
+}) => {
   return (
     <div
       onDrop={onDrop}
       onDragOver={onDragOver}
       className={`flex-1 bg-gray-900/30 rounded-xl p-6 border-2 border-dashed transition-all ${
-        isEmpty ? 'border-purple-500/50' : 'border-purple-500/30'
+        isEmpty ? "border-purple-500/50" : "border-purple-500/30"
       }`}
     >
       <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
         {title}
-        <span className="text-sm font-normal text-gray-400">({movies.length})</span>
+        <span className="text-sm font-normal text-gray-400">
+          ({movies.length})
+        </span>
       </h2>
-      
+
       <div className="space-y-3">
         {movies.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
@@ -22,7 +32,7 @@ const DropZone = ({ title, movies, onDrop, onDragOver, onDragStart, onDragEnd, i
           </div>
         ) : (
           movies.map((movie) => (
-            <FadeInAnimation type={'movieDetails'}>
+            <FadeInAnimation type={"movieDetails"}>
               <FavouriteMovieCard
                 key={movie.id}
                 movie={movie}

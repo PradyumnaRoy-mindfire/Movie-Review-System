@@ -6,31 +6,31 @@ const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
 const FetchMovieVideosFromApi = (id) => {
-    const movieVideosApiUrl = `${movieBaseUrl}/movie/${id}/videos?api_key=${API_KEY}`;
-    const [videos, setVideos] = useState([]);
-    const { isLoading, setIsLoading } = useLoading();
-    
-    useEffect(() => {
-        async function fetchData() {
-            setIsLoading(true);
-            try {
-                const response = await fetch(movieVideosApiUrl);
-                const data = await response.json();
-                setVideos(data.results || []);
-            } catch (error) {
-                logError(error,':Error fetching movie videos');
-                setVideos([]); 
-            } finally {
-                setIsLoading(false);
-            }
-        }
+  const movieVideosApiUrl = `${movieBaseUrl}/movie/${id}/videos?api_key=${API_KEY}`;
+  const [videos, setVideos] = useState([]);
+  const { isLoading, setIsLoading } = useLoading();
 
-        if (id) {
-            fetchData();
-        }
-    }, [id]);
+  useEffect(() => {
+    async function fetchData() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(movieVideosApiUrl);
+        const data = await response.json();
+        setVideos(data.results || []);
+      } catch (error) {
+        logError(error, ":Error fetching movie videos");
+        setVideos([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-    return { videos, isLoading };
-}
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
+
+  return { videos, isLoading };
+};
 
 export default FetchMovieVideosFromApi;

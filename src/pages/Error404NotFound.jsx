@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Home, ArrowLeft } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { Home, ArrowLeft } from "lucide-react";
 
 export default function NotFound() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -10,8 +10,8 @@ export default function NotFound() {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   const parallaxOffset = isHovering ? 20 : 10;
@@ -30,7 +30,7 @@ export default function NotFound() {
         <div
           className="relative mb-8 animate-float transition-transform duration-300 ease-out"
           style={{
-            transform: `translate(${offsetX}px, ${offsetY}px)`
+            transform: `translate(${offsetX}px, ${offsetY}px)`,
           }}
         >
           <h1 className="text-9xl md:text-[12rem] font-bold leading-none tracking-tight bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_25px_25px_rgb(0_0_0/0.15)]">
@@ -43,8 +43,8 @@ export default function NotFound() {
             Oops! Page Not Found
           </h2>
           <p className="text-lg text-gray-300 max-w-md mx-auto mb-1">
-            The page you're looking for seems to have wandered off into the digital void.
-            Let's get you back on track.
+            The page you're looking for seems to have wandered off into the
+            digital void. Let's get you back on track.
           </p>
 
           <div className="pt-1 mt-[50px] border-t border-white/10"></div>
@@ -55,23 +55,25 @@ export default function NotFound() {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               className={`group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300 bg-white/5 backdrop-blur-lg w-[180px] h-[30px] justify-center border border-white/20 ${
-                isHovering ? 'scale-105' : 'scale-100'
+                isHovering ? "scale-105" : "scale-100"
               }`}
             >
               <ArrowLeft
                 className={`w-5 h-5 transition-transform duration-300 ${
-                  isHovering ? '-translate-x-1' : 'translate-x-0'
+                  isHovering ? "-translate-x-1" : "translate-x-0"
                 }`}
               />
               Go Back
             </button>
 
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => (window.location.href = "/")}
               onMouseEnter={() => setIsHomeHovering(true)}
               onMouseLeave={() => setIsHomeHovering(false)}
               className={`group flex items-center gap-2 px-6 py-3 text-white rounded-full font-medium transition-all duration-300 w-[180px] h-[30px] justify-center bg-gradient-to-r from-purple-600 to-blue-600 shadow-[0_10px_40px_rgba(168,85,247,0.3)] ${
-                isHomeHovering ? 'scale-105 from-purple-700 to-blue-700' : 'scale-100'
+                isHomeHovering
+                  ? "scale-105 from-purple-700 to-blue-700"
+                  : "scale-100"
               }`}
             >
               <Home className="w-5 h-5" />
