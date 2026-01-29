@@ -143,6 +143,7 @@ Movie-Review-System/
 │   ├── pages/           # Page components
 │   ├── hooks/           # Custom React hooks
 │   ├── utils/           # Utility functions
+│   ├── services/        # API services
 │   ├── styles/          # CSS modules
 │   └── App.jsx          # Root component
 ├── public/              # Static assets

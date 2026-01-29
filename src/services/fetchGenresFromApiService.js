@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { logError } from "../../utils/errorLogger";
-import useLoading from "../../customHooks/useLoading";
+import { logError } from "../utils/errorLogger";
+import useLoading from "../customHooks/useLoading.js";
 
 const genreApiUrl = import.meta.env.VITE_GENRE_URL;
 

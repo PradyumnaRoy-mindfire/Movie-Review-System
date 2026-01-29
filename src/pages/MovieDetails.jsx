@@ -1,5 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
-import FetchMovieDetailsFromApi from "../components/api/FetchMovieDetailsFromApi";
+import fetchMovieDetailsFromApi from "../services/fetchMovieDetailsFromApiService";
 import Navbar from "../components/Navbar";
 import FavouriteButton from "../components/addToFavourite/FavouriteButton";
 import MovieVideos from "../components/seeMovieDetails/MovieVideos";
@@ -17,7 +17,7 @@ const MovieDetails = () => {
   const { state } = useLocation();
   const genres = state.genres;
 
-  const { movie, isLoading } = FetchMovieDetailsFromApi(id);
+  const { movie, isLoading } = fetchMovieDetailsFromApi(id);
 
   const backdropUrl = movie.backdrop_path
     ? `${imageBaseUrl}original${movie.backdrop_path}`
