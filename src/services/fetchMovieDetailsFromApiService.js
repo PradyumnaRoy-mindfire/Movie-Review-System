@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { logError } from "../../utils/errorLogger";
-import useLoading from "../../customHooks/useLoading";
+import { logError } from "../utils/errorLogger";
+import useLoading from "../customHooks/useLoading.js";
 
 const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
-const FetchMovieDetailsFromApi = (id) => {
+const fetchMovieDetailsFromApi = (id) => {
   const movieDetailsApiUrl = `${movieBaseUrl}/movie/${id}?api_key=${API_KEY}`;
   const [movie, setMovie] = useState("");
   const { isLoading, setIsLoading } = useLoading();
@@ -38,4 +38,4 @@ const FetchMovieDetailsFromApi = (id) => {
   return { movie, isLoading };
 };
 
-export default FetchMovieDetailsFromApi;
+export default fetchMovieDetailsFromApi;

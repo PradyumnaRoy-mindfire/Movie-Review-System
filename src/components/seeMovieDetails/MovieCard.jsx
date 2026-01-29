@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styles from "../../css/movieCard.module.css";
 import FavouriteButton from "../addToFavourite/FavouriteButton";
-import GenreData from "../api/FetchGenresFromApi";
+import genreData from "../../services/fetchGenresFromApiService";
 
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL;
@@ -9,7 +9,7 @@ const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL;
 const MovieCard = ({ movie }) => {
   const imageBase = `${imageBaseUrl}w500`;
   //fetching the genredata from the api
-  const { genres, genreNameIdMap } = GenreData();
+  const { genres, genreNameIdMap } = genreData();
 
   return (
     <div className={styles.cardContainer}>

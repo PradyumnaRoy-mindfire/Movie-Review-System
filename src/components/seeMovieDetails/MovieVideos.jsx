@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import FetchMovieVideosFromApi from "../api/FetchMovieVideosFromApi";
+import fetchMovieVideosFromApi from "../../services/fetchMovieVideosFromApiService";
 import LoadingEffect from "../animation/LoadingEffect";
 import VideoModal from "./VideoModal";
 import FadeInAnimation from "../animation/FadeInAnimation";
 
 const MovieVideos = ({ id }) => {
-  const { videos, isLoading } = FetchMovieVideosFromApi(id);
+  const { videos, isLoading } = fetchMovieVideosFromApi(id);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
 
@@ -113,7 +113,7 @@ const MovieVideos = ({ id }) => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                      <div className="w-full h-full bg-gray-800 flex items-center justify-center" aria-label="Video thumbnail not available">
                         <svg
                           className="w-16 h-16 text-white drop-shadow-lg"
                           fill="currentColor"
@@ -124,7 +124,6 @@ const MovieVideos = ({ id }) => {
                       </div>
                     )}
 
-                    {/* Overlay */}
                     <div className="absolute inset-0 bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
                       <svg
                         className="w-16 h-16 text-white drop-shadow-lg "

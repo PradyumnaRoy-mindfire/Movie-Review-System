@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Star, Calendar, Grip } from "lucide-react";
 import FavouriteButton from "./FavouriteButton";
-import GenreData from "../api/FetchGenresFromApi";
+import genreData from "../../services/fetchGenresFromApiService";
 
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL;
 
 const FavouriteMovieCard = ({ movie, onDragStart, onDragEnd }) => {
-  const { genres } = GenreData();
+  const { genres } = genreData();
 
   const imageUrl = movie.poster_path
     ? `${imageBaseUrl}w200${movie.poster_path}`

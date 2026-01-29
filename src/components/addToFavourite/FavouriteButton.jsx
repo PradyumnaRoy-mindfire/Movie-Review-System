@@ -1,6 +1,6 @@
 import styles from "../../css/movieCard.module.css";
-import useFavourites from "../../customHooks/useFavourite.jsx";
-import removeFromWatchLater from "../../customHooks/removeFromWatchLater.jsx";
+import useFavourites from "../../customHooks/useFavourite";
+import removeFromWatchLater from "../../customHooks/removeFromWatchLater";
 
 const FavouriteButton = ({ movie, hide }) => {
   const { isFavourite, toggleFavourite } = useFavourites();

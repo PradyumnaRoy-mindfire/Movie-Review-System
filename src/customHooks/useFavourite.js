@@ -1,8 +1,10 @@
 import { useState, useCallback } from "react";
 import { logError } from "../utils/errorLogger";
-import toast from "react-hot-toast";
+import toastNotification from "../utils/toastNotifications";
 
 function useFavourite() {
+  const { showAddToFavouriteToast, showRemoveFromFavouriteToast } =
+    toastNotification;
   const [favourites, setFavourites] = useState(() => {
     try {
       const storedFavourites = localStorage.getItem("movieFavourites");
@@ -48,28 +50,6 @@ function useFavourite() {
       return updatedFavourites;
     });
   }, []);
-
-  const showAddToFavouriteToast = (title) => {
-    toast.success(
-      <span>
-        <span className="font-bold">{title}</span> added to your favourites
-      </span>,
-      {
-        duration: 3000,
-      },
-    );
-  };
-
-  const showRemoveFromFavouriteToast = (title) => {
-    toast.error(
-      <span>
-        <span className="font-bold">{title}</span> removed from your favourites
-      </span>,
-      {
-        duration: 3000,
-      },
-    );
-  };
 
   const isFavourite = useCallback(
     (movie) => {
