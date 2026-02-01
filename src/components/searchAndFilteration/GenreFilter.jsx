@@ -1,7 +1,7 @@
-import fetchGenreData from "../../services/fetchGenresFromApiService";
+import useFetchGenres from "../../services/fetchGenresFromApiService";
 
 function GenreFilter({ selectedGenre, onGenreChange }) {
-  const { genres } = fetchGenreData();
+  const { genres } = useFetchGenres();
 
   return (
     <div className="w-[85%] mb-8">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "../components/Header";
 import MovieCard from "../components/seeMovieDetails/MovieCard";
 import LoadingEffect from "../components/animation/LoadingEffect";
@@ -17,43 +17,46 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("popular");
   const { isLoading, setIsLoading } = useLoading();
 
+  const fetchData = useCallback(
+    async (currentPage, genreId, query, category) => {
+      setIsLoading(true);
+
+      try {
+        const movies = await fetchMoviesFromApi(
+          currentPage,
+          genreId,
+          query,
+          category,
+        );
+
+        if (currentPage === 1) {
+          setMovie(movies);
+        } else {
+          setMovie((prev) => [...prev, ...movies]);
+        }
+      } catch (error) {
+        logError(error, ":Error fetching movies");
+        if (currentPage === 1) {
+          setMovie([]);
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [setIsLoading],
+  );
+
   useEffect(() => {
     setMovie([]);
     setPage(1);
     fetchData(1, selectedGenre, searchQuery, selectedCategory);
-  }, [selectedGenre, searchQuery, selectedCategory]);
+  }, [selectedGenre, searchQuery, selectedCategory, fetchData]);
 
   useEffect(() => {
     if (page > 1) {
       fetchData(page, selectedGenre, searchQuery, selectedCategory);
     }
-  }, [page]);
-
-  async function fetchData(currentPage, genreId, query, category) {
-    setIsLoading(true);
-
-    try {
-      const movies = await fetchMoviesFromApi(
-        currentPage,
-        genreId,
-        query,
-        category,
-      );
-
-      if (currentPage === 1) {
-        setMovie(movies);
-      } else {
-        setMovie((prev) => [...prev, ...movies]);
-      }
-    } catch (error) {
-      logError(error, ":Error fetching movies");
-      if (currentPage === 1) {
-        setMovie([]);
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  }, [page, fetchData, selectedGenre, searchQuery, selectedCategory]);
 
   useEffect(() => {
     const handleScroll = () => {

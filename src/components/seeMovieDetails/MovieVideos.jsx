@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import fetchMovieVideosFromApi from "../../services/fetchMovieVideosFromApiService";
+import useFetchMovieVideos from "../../services/fetchMovieVideosFromApiService";
 import LoadingEffect from "../animation/LoadingEffect";
 import VideoModal from "./VideoModal";
 import FadeInAnimation from "../animation/FadeInAnimation";
 
 const MovieVideos = ({ id }) => {
-  const { videos, isLoading } = fetchMovieVideosFromApi(id);
+  const { videos, isLoading } = useFetchMovieVideos(id);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
 
@@ -113,7 +113,10 @@ const MovieVideos = ({ id }) => {
                         loading="lazy"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gray-800 flex items-center justify-center" aria-label="Video thumbnail not available">
+                      <div
+                        className="w-full h-full bg-gray-800 flex items-center justify-center"
+                        aria-label="Video thumbnail not available"
+                      >
                         <svg
                           className="w-16 h-16 text-white drop-shadow-lg"
                           fill="currentColor"
