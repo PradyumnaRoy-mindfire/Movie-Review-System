@@ -9,6 +9,8 @@ export function logError(error, context = "") {
 
   //IF dev then log in the console
   if (import.meta.env.VITE_DEV) {
+    // Allow console output only in development builds
+    /* eslint-disable-next-line no-console */
     console.error("Logged Error:", errorData);
   }
 

@@ -1,21 +1,21 @@
 import { useEffect, useState } from "react";
-import { logError } from "../utils/errorLogger";
+import { logError } from "../utils/errorLogger.js";
 import useLoading from "../customHooks/useLoading.js";
 
 const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
-const fetchMovieDetailsFromApi = (id) => {
+const useFetchMovieDetails = (id) => {
   const movieDetailsApiUrl = `${movieBaseUrl}/movie/${id}?api_key=${API_KEY}`;
   const [movie, setMovie] = useState("");
   const { isLoading, setIsLoading } = useLoading();
 
   useEffect(() => {
-    setIsLoading(true);
-    async function fetchData() {
-      try {
-        setIsLoading(true);
+    let mounted = true;
 
+    async function fetchData() {
+      setIsLoading(true);
+      try {
         const res = await fetch(movieDetailsApiUrl, {
           method: "GET",
         });
@@ -25,17 +25,26 @@ const fetchMovieDetailsFromApi = (id) => {
         }
 
         const data = await res.json();
-        setMovie(data);
+        if (mounted) setMovie(data);
       } catch (error) {
         logError(error, "Movie Details API Fetch");
       } finally {
-        setIsLoading(false);
+        if (mounted) setIsLoading(false);
       }
     }
-    fetchData();
-  }, [id]);
+
+    if (id) {
+      fetchData();
+    } else {
+      if (mounted) setMovie("");
+    }
+
+    return () => {
+      mounted = false;
+    };
+  }, [movieDetailsApiUrl, setIsLoading, id]);
 
   return { movie, isLoading };
 };
 
-export default fetchMovieDetailsFromApi;
+export default useFetchMovieDetails;

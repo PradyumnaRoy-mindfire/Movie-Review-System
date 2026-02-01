@@ -98,12 +98,12 @@ Create a `.env` file in the root directory:
 ```env
 VITE_MOVIE_API_KEY=YOUR_API_KEY
 VITE_MOVIE_BASE_URL='https://api.themoviedb.org/3'
-VITE_MOVIE_API_URL='POPULAR_MOVIE_URL'
-VITE_GENRE_URL='GENRE_URL'
+VITE_MOVIE_API_URL='YOUR_POPULAR_MOVIE_API_URL'
+VITE_GENRE_URL='YOUR_GENRE_API_URL'
 VITE_YOUTUBE_VIDEOS_URL='https://www.youtube.com/watch?v='
 VITE_IMAGE_BASE_URL='https://image.tmdb.org/t/p/'
 VITE_IMDB_BASE_URL='https://www.imdb.com/title/'
-VITE_PLACEHOLDER_IMAGE_URL='https://thumbs.dreamstime.com/b/film-strip-london-photographic-showing-scenes-around-included-images-tower-bridge-river-thames-iconic-62944820.jpg'
+VITE_PLACEHOLDER_IMAGE_URL='YOUR_PLACEHOLDER_IMAGE_URL'
 ```
 
 4. **Start the development server**
