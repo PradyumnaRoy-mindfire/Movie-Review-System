@@ -12,7 +12,7 @@ export async function fetchMoviesFromApi({
 
   if (query && query.trim()) {
     url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
-      query,
+      query
     )}&page=${pageParam}`;
   } else if (genreId) {
     url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&page=${pageParam}&sort_by=popularity.desc`;

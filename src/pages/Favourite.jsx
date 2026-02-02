@@ -27,7 +27,7 @@ const Favourite = () => {
   // Update favouriteMovies and filter out movies that are in watchLater to separate the favourite and watchlater movie
   useEffect(() => {
     const filteredFavourites = favourites.filter(
-      (fav) => !watchLaterMovies.some((watch) => watch.id === fav.id),
+      (fav) => !watchLaterMovies.some((watch) => watch.id === fav.id)
     );
     setFavouriteMovies(filteredFavourites);
   }, [favourites, watchLaterMovies]);
@@ -61,12 +61,12 @@ const Favourite = () => {
 
     if (draggedFrom === "favourites") {
       setFavouriteMovies((prev) =>
-        prev.filter((m) => m.id !== draggedMovie.id),
+        prev.filter((m) => m.id !== draggedMovie.id)
       );
       setWatchLaterMovies((prev) => [...prev, draggedMovie]);
     } else {
       setWatchLaterMovies((prev) =>
-        prev.filter((m) => m.id !== draggedMovie.id),
+        prev.filter((m) => m.id !== draggedMovie.id)
       );
       setFavouriteMovies((prev) => [...prev, draggedMovie]);
     }
