@@ -1,42 +1,36 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { logError } from "../utils/errorLogger";
-import useLoading from "../customHooks/useLoading.js";
 
 const movieBaseUrl = import.meta.env.VITE_MOVIE_BASE_URL;
 const API_KEY = import.meta.env.VITE_MOVIE_API_KEY;
 
-const useFetchMovieVideos = (id) => {
+const fetchMovieVideos = async (id) => {
   const movieVideosApiUrl = `${movieBaseUrl}/movie/${id}/videos?api_key=${API_KEY}`;
-  const [videos, setVideos] = useState([]);
-  const { isLoading, setIsLoading } = useLoading();
 
-  useEffect(() => {
-    let mounted = true;
+  const response = await fetch(movieVideosApiUrl);
 
-    async function fetchData() {
-      setIsLoading(true);
-      try {
-        const response = await fetch(movieVideosApiUrl);
-        const data = await response.json();
-        if (mounted) setVideos(data.results || []);
-      } catch (error) {
-        logError(error, ":Error fetching movie videos");
-        if (mounted) setVideos([]);
-      } finally {
-        if (mounted) setIsLoading(false);
-      }
-    }
+  if (!response.ok) {
+    throw new Error(`Movie Videos API failed with status ${response.status}`);
+  }
 
-    if (id) {
-      fetchData();
-    } else {
-      setVideos([]);
-    }
+  const data = await response.json();
+  return data.results || [];
+};
 
-    return () => {
-      mounted = false;
-    };
-  }, [movieVideosApiUrl, setIsLoading, id]);
+const useFetchMovieVideos = (id) => {
+  const {
+    data: videos = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["movieVideos", id],
+    queryFn: () => fetchMovieVideos(id),
+    enabled: !!id, // Only fetch if id exists
+  });
+
+  if (error) {
+    logError(error, ":Error fetching movie videos");
+  }
 
   return { videos, isLoading };
 };

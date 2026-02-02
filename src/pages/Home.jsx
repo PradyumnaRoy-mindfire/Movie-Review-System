@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
 import MovieCard from "../components/seeMovieDetails/MovieCard";
 import LoadingEffect from "../components/animation/LoadingEffect";
-import useLoading from "../customHooks/useLoading.js";
 import GenreFilter from "../components/searchAndFilteration/GenreFilter";
 import SearchBar from "../components/searchAndFilteration/SearchBar";
 import CategoryFilter from "../components/searchAndFilteration/CategoryFilter";
@@ -10,66 +10,59 @@ import { logError } from "../utils/errorLogger";
 import { fetchMoviesFromApi } from "../services/fetchMoviesFromApiService";
 
 const Home = () => {
-  const [moviesData, setMovie] = useState([]);
-  const [page, setPage] = useState(1);
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("popular");
-  const { isLoading, setIsLoading } = useLoading();
 
-  const fetchData = useCallback(
-    async (currentPage, genreId, query, category) => {
-      setIsLoading(true);
-
-      try {
-        const movies = await fetchMoviesFromApi(
-          currentPage,
-          genreId,
-          query,
-          category,
-        );
-
-        if (currentPage === 1) {
-          setMovie(movies);
-        } else {
-          setMovie((prev) => [...prev, ...movies]);
-        }
-      } catch (error) {
-        logError(error, ":Error fetching movies");
-        if (currentPage === 1) {
-          setMovie([]);
-        }
-      } finally {
-        setIsLoading(false);
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    error,
+  } = useInfiniteQuery({
+    queryKey: ["movies", selectedGenre, searchQuery, selectedCategory],
+    queryFn: ({ pageParam = 1 }) =>
+      fetchMoviesFromApi({
+        pageParam,
+        genreId: selectedGenre,
+        query: searchQuery,
+        category: selectedCategory,
+      }),
+    getNextPageParam: (lastPage) => {
+      if (lastPage.page < lastPage.totalPages) {
+        return lastPage.page + 1;
       }
+      return undefined;
     },
-    [setIsLoading],
-  );
+    initialPageParam: 1,
+  });
 
-  useEffect(() => {
-    setMovie([]);
-    setPage(1);
-    fetchData(1, selectedGenre, searchQuery, selectedCategory);
-  }, [selectedGenre, searchQuery, selectedCategory, fetchData]);
+  // Flatten all pages into a single movies array
+  const moviesData = useMemo(() => {
+    return data?.pages.flatMap((page) => page.results) || [];
+  }, [data]);
 
-  useEffect(() => {
-    if (page > 1) {
-      fetchData(page, selectedGenre, searchQuery, selectedCategory);
-    }
-  }, [page, fetchData, selectedGenre, searchQuery, selectedCategory]);
+  const isLoading = isFetching && !isFetchingNextPage;
 
+  if (error) {
+    logError(error, ":Error fetching movies");
+  }
+
+  // Infinite scroll handler
   useEffect(() => {
     const handleScroll = () => {
       const bottom =
-        window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
-      if (bottom && !isLoading) {
-        setPage((prev) => prev + 1);
+        window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+      if (bottom && hasNextPage && !isFetching) {
+        fetchNextPage();
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isLoading]);
+  }, [fetchNextPage, hasNextPage, isFetching]);
 
   const handleGenreChange = (genreId) => {
     setSelectedGenre(genreId);
@@ -113,9 +106,9 @@ const Home = () => {
             <MovieCard movie={movie} key={`${movie.id}-${index}`} />
           ))}
 
-        {isLoading && <LoadingEffect />}
+        {(isLoading || isFetchingNextPage) && <LoadingEffect />}
 
-        {!isLoading && moviesData.length === 0 && (
+        {!isFetching && moviesData.length === 0 && (
           <div className="w-full flex justify-center items-center py-12 text-gray-400">
             <p className="text-xl">No movies found</p>
           </div>
