@@ -1,44 +1,39 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { logError } from "../utils/errorLogger";
-import useLoading from "../customHooks/useLoading.js";
 
 const genreApiUrl = import.meta.env.VITE_GENRE_URL;
 
+const fetchGenres = async () => {
+  const res = await fetch(genreApiUrl, {
+    method: "GET",
+  });
+
+  if (!res.ok) {
+    throw new Error(`Genre API failed with status ${res.status}`);
+  }
+
+  const data = await res.json();
+  return data.genres || [];
+};
+
 function useFetchGenres() {
-  const [genres, setGenre] = useState([]);
-  const { isLoading, setIsLoading } = useLoading();
+  const {
+    data: genres = [],
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["genres"],
+    queryFn: fetchGenres,
+    staleTime: 30 * 60 * 1000, // 30 minutes - genres don't change often
+  });
 
-  useEffect(() => {
-    let mounted = true;
-
-    (async function genreData() {
-      setIsLoading(true);
-      try {
-        const res = await fetch(genreApiUrl, {
-          method: "GET",
-        });
-
-        if (!res.ok) {
-          throw new Error(`Genre API failed with status ${res.status}`);
-        }
-
-        const data = await res.json();
-        if (mounted) setGenre(data.genres);
-      } catch (error) {
-        logError(error, "Genre API Fetch");
-      } finally {
-        if (mounted) setIsLoading(false);
-      }
-    })();
-
-    return () => {
-      mounted = false;
-    };
-  }, [setIsLoading]);
+  if (error) {
+    logError(error, "Genre API Fetch");
+  }
 
   const genreNameIdMap = Object.fromEntries(genres.map((g) => [g.id, g.name]));
 
-  return { genres, genreNameIdMap };
+  return { genres, genreNameIdMap, isLoading };
 }
 
 export default useFetchGenres;
