@@ -5,10 +5,13 @@ import Favourite from "./pages/Favourite";
 import Error404NotFound from "./pages/Error404NotFound";
 import MovieDetails from "./pages/MovieDetails";
 import AboutUs from "./pages/AboutUs";
+import ScrollToTopButton from "./components/ScrollToTopButton";
+import "./App.css";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTopButton />
       <Toaster
         position="top-right"
         toastOptions={{
