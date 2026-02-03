@@ -4,10 +4,8 @@ import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 
 export default [
-   {
-    ignores: [
-      "node_modules/**",
-    ],
+  {
+    ignores: ["node_modules/**"],
   },
 
   js.configs.recommended,
@@ -43,6 +41,30 @@ export default [
     settings: {
       react: {
         version: "detect",
+      },
+    },
+  },
+  // Test files configuration
+  {
+    files: [
+      "**/__tests__/**/*.{js,jsx}",
+      "**/*.test.{js,jsx}",
+      "**/*.spec.{js,jsx}",
+    ],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        // Vitest globals
+        describe: "readonly",
+        it: "readonly",
+        expect: "readonly",
+        vi: "readonly",
+        beforeEach: "readonly",
+        afterEach: "readonly",
+        beforeAll: "readonly",
+        afterAll: "readonly",
+        test: "readonly",
       },
     },
   },
