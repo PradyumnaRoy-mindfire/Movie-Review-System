@@ -13,7 +13,7 @@ import Navbar from "../components/Navbar";
 import FadeInAnimation from "../components/animation/FadeInAnimation";
 import StaggeredLetterAnimation from "../components/animation/StaggeredLetterAnimation";
 
-export default function AboutUs() {
+const AboutUs = () => {
   const features = [
     {
       icon: <Film className="w-8 h-8" />,
@@ -259,4 +259,6 @@ export default function AboutUs() {
       </div>
     </>
   );
-}
+};
+
+export default AboutUs;

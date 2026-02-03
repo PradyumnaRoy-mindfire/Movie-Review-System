@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 /* to remove the right side scroll bar */
-*::-webkit-scrollbar{
-    display: none;
+*::-webkit-scrollbar {
+  display: none;
 }
-

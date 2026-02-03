@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Home, ArrowLeft } from "lucide-react";
 
-export default function NotFound() {
+const NotFound = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [isHomeHovering, setIsHomeHovering] = useState(false);
@@ -88,4 +88,6 @@ export default function NotFound() {
       </div>
     </div>
   );
-}
+};
+
+export default NotFound;

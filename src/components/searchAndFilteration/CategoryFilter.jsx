@@ -1,4 +1,9 @@
-function CategoryFilter({ selectedCategory, onCategoryChange }) {
+import { memo } from "react";
+
+const CategoryFilter = memo(function CategoryFilter({
+  selectedCategory,
+  onCategoryChange,
+}) {
   const categories = [
     { id: "popular", name: "Popular", icon: "🔥" },
     { id: "top_rated", name: "Top Rated", icon: "⭐" },
@@ -29,6 +34,6 @@ function CategoryFilter({ selectedCategory, onCategoryChange }) {
       </div>
     </div>
   );
-}
+});
 
 export default CategoryFilter;

@@ -1,6 +1,6 @@
 import useFetchGenres from "../../services/fetchGenresFromApiService";
 
-function GenreFilter({ selectedGenre, onGenreChange }) {
+const GenreFilter = ({ selectedGenre, onGenreChange }) => {
   const { genres } = useFetchGenres();
 
   return (
@@ -34,6 +34,6 @@ function GenreFilter({ selectedGenre, onGenreChange }) {
       </div>
     </div>
   );
-}
+};
 
 export default GenreFilter;

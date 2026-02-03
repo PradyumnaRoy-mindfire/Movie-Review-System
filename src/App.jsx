@@ -1,14 +1,19 @@
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Home from "./pages/Home";
-import Favourite from "./pages/Favourite";
-import Error404NotFound from "./pages/Error404NotFound";
-import MovieDetails from "./pages/MovieDetails";
-import AboutUs from "./pages/AboutUs";
 import ScrollToTopButton from "./components/ScrollToTopButton";
+import LoadingEffect from "./components/animation/LoadingEffect";
+import { ROUTES } from "./constants/routes";
 import "./App.css";
 
-function App() {
+// lazy loading and code splitting
+const Home = lazy(() => import("./pages/Home"));
+const Favourite = lazy(() => import("./pages/Favourite"));
+const Error404NotFound = lazy(() => import("./pages/Error404NotFound"));
+const MovieDetails = lazy(() => import("./pages/MovieDetails"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+
+const App = () => {
   return (
     <BrowserRouter>
       <ScrollToTopButton />
@@ -23,15 +28,18 @@ function App() {
           },
         }}
       />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/favourites" element={<Favourite />} />
-        <Route path="/movies/:id/details" element={<MovieDetails />} />
-        <Route path="/about-us" element={<AboutUs />} />
-        <Route path="*" element={<Error404NotFound />} />
-      </Routes>
+
+      <Suspense fallback={<LoadingEffect />}>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route path={ROUTES.FAVOURITES} element={<Favourite />} />
+          <Route path={ROUTES.MOVIE_DETAILS} element={<MovieDetails />} />
+          <Route path={ROUTES.ABOUT} element={<AboutUs />} />
+          <Route path={ROUTES.NOT_FOUND} element={<Error404NotFound />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

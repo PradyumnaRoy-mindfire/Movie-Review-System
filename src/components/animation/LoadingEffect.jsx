@@ -1,5 +1,7 @@
+import { memo } from "react";
 import { ThreeDot } from "react-loading-indicators";
-const LoadingEffect = () => {
+
+const LoadingEffect = memo(function LoadingEffect() {
   const loadingEffect = (
     <ThreeDot color="#ffffff" size="large" text="Please wait..." textColor="" />
   );
@@ -19,6 +21,6 @@ const LoadingEffect = () => {
       {loadingEffect}
     </div>
   );
-};
+});
 
 export default LoadingEffect;

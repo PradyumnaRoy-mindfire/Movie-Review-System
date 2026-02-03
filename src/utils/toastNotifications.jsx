@@ -5,7 +5,7 @@ const showAddToFavouriteToast = (title) => {
     <span>
       <span className="font-bold">{title}</span> added to your favourites
     </span>,
-    { duration: 3000 },
+    { duration: 3000 }
   );
 };
 
@@ -14,7 +14,7 @@ const showRemoveFromFavouriteToast = (title) => {
     <span>
       <span className="font-bold">{title}</span> removed from your favourites
     </span>,
-    { duration: 3000 },
+    { duration: 3000 }
   );
 };
 

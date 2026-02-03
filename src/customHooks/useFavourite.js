@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { logError } from "../utils/errorLogger";
 import toastNotification from "../utils/toastNotifications";
 
-function useFavourite() {
+const useFavourite = () => {
   const { showAddToFavouriteToast, showRemoveFromFavouriteToast } =
     toastNotification;
   const [favourites, setFavourites] = useState(() => {
@@ -31,7 +31,7 @@ function useFavourite() {
         let updatedFavourites;
         if (isFav) {
           updatedFavourites = latestFavourites.filter(
-            (fav) => fav.id !== movie.id,
+            (fav) => fav.id !== movie.id
           );
           showRemoveFromFavouriteToast(movie.title);
         } else {
@@ -42,7 +42,7 @@ function useFavourite() {
         try {
           localStorage.setItem(
             "movieFavourites",
-            JSON.stringify(updatedFavourites),
+            JSON.stringify(updatedFavourites)
           );
         } catch (error) {
           logError(error, ":Error saving favourites");
@@ -51,7 +51,7 @@ function useFavourite() {
         return updatedFavourites;
       });
     },
-    [showAddToFavouriteToast, showRemoveFromFavouriteToast],
+    [showAddToFavouriteToast, showRemoveFromFavouriteToast]
   );
 
   // Checks if a given movie is in the favourites list by comparing movie IDs.
@@ -60,10 +60,10 @@ function useFavourite() {
     (movie) => {
       return favourites.some((fav) => fav.id === movie.id);
     },
-    [favourites],
+    [favourites]
   );
 
   return { favourites, toggleFavourite, isFavourite };
-}
+};
 
 export default useFavourite;

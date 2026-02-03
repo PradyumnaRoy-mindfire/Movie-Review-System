@@ -7,7 +7,7 @@ const removeFromWatchLater = (movie) => {
 
   if (isWatch) {
     storedWatchLater = storedWatchLater.filter(
-      (watch) => watch.id !== movie.id,
+      (watch) => watch.id !== movie.id
     );
 
     localStorage.setItem("watchLaterMovies", JSON.stringify(storedWatchLater));

@@ -16,7 +16,7 @@ const fetchGenres = async () => {
   return data.genres || [];
 };
 
-function useFetchGenres() {
+const useFetchGenres = () => {
   const {
     data: genres = [],
     isLoading,
@@ -34,6 +34,6 @@ function useFetchGenres() {
   const genreNameIdMap = Object.fromEntries(genres.map((g) => [g.id, g.name]));
 
   return { genres, genreNameIdMap, isLoading };
-}
+};
 
 export default useFetchGenres;
