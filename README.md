@@ -267,4 +267,4 @@ This project uses The Movie Database (TMDb) API v3. Key endpoints include:
 - `/` - Landing page and Show movies
 - `/movie/{movie_id}/details` - Movie details
 - `/favourites` - Show Favourites and Watch Later
-- `/about-us` - About the project
+- `/about-us` - About the project 
