@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { logError } from "../utils/errorLogger";
 import toastNotification from "../utils/toastNotifications";
 
-function useFavourite() {
+const useFavourite = () => {
   const { showAddToFavouriteToast, showRemoveFromFavouriteToast } =
     toastNotification;
   const [favourites, setFavourites] = useState(() => {
@@ -64,6 +64,6 @@ function useFavourite() {
   );
 
   return { favourites, toggleFavourite, isFavourite };
-}
+};
 
 export default useFavourite;

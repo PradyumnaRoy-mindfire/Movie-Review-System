@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function SearchBar({ searchQuery, onSearchChange }) {
+const SearchBar = ({ searchQuery, onSearchChange }) => {
   const [inputValue, setInputValue] = useState(searchQuery);
 
   const handleInputChange = (e) => {
@@ -40,6 +40,6 @@ function SearchBar({ searchQuery, onSearchChange }) {
       </div>
     </div>
   );
-}
+};
 
 export default SearchBar;

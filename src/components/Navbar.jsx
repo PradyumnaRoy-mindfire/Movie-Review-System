@@ -1,9 +1,10 @@
+import { memo } from "react";
 //for text animation of the logo
 import TextType from "./animation/TextType";
 import styles from "../css/header.module.css";
 import { NavLink } from "react-router-dom";
 
-function Navbar() {
+const Navbar = memo(function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarContainer}>
@@ -47,6 +48,6 @@ function Navbar() {
       </div>
     </nav>
   );
-}
+});
 
 export default Navbar;

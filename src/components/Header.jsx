@@ -3,7 +3,7 @@ import CircularText from "./animation/CircularText.jsx";
 
 import Navbar from "./Navbar.jsx";
 
-function Header() {
+const Header = () => {
   return (
     <div className={styles.app}>
       <Navbar />
@@ -21,6 +21,6 @@ function Header() {
       />
     </div>
   );
-}
+};
 
 export default Header;
