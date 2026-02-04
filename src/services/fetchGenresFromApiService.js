@@ -24,7 +24,7 @@ const useFetchGenres = () => {
   } = useQuery({
     queryKey: ["genres"],
     queryFn: fetchGenres,
-    staleTime: 30 * 60 * 1000, // 30 minutes - genres don't change often
+    staleTime: 30 * 60 * 1000, //30 mins Time during which data is considered cached
   });
 
   if (error) {

@@ -85,22 +85,23 @@ const Home = () => {
     <>
       <div className="bg-gradient-to-br from-gray-700 via-purple-900 to-gray-700 flex flex-wrap justify-center items-center">
         <Header />
-
+        {/* Search Section */}
         <SearchBar
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}
         />
-
+        {/* Category wise filters Section */}
         <CategoryFilter
           selectedCategory={selectedCategory}
           onCategoryChange={handleCategoryChange}
         />
-
+        {/* Genre wise filters Section */}
         <GenreFilter
           selectedGenre={selectedGenre}
           onGenreChange={handleGenreChange}
         />
 
+        {/* Movies Section */}
         {moviesData &&
           moviesData.map((movie, index) => (
             <MovieCard movie={movie} key={`${movie.id}-${index}`} />

@@ -5,6 +5,8 @@ import toastNotification from "../utils/toastNotifications";
 const useFavourite = () => {
   const { showAddToFavouriteToast, showRemoveFromFavouriteToast } =
     toastNotification;
+
+  // Initialize favourites state from localStorage or as an empty array.
   const [favourites, setFavourites] = useState(() => {
     try {
       const storedFavourites = localStorage.getItem("movieFavourites");
@@ -15,6 +17,9 @@ const useFavourite = () => {
     }
   });
 
+  // Toggles the favourite status of a movie.
+  // If the movie is already a favourite, it removes it; otherwise, it adds it.
+  // Updates both the local state and localStorage accordingly.
   const toggleFavourite = useCallback(
     (movie) => {
       setFavourites((currentFavourites) => {

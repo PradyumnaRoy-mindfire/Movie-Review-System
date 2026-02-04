@@ -38,14 +38,14 @@ const Favourite = () => {
   }, [watchLaterMovies]);
 
   const handleDragStart = (movie, from) => (e) => {
-    setDraggedMovie(movie);
-    setDraggedFrom(from);
+    setDraggedMovie(movie); //remember the movie being dragged
+    setDraggedFrom(from); //remember where it was dragged from
     e.dataTransfer.effectAllowed = "move";
   };
 
   const handleDragEnd = () => {
-    setDraggedMovie(null);
-    setDraggedFrom(null);
+    setDraggedMovie(null); //forget the movie
+    setDraggedFrom(null); //forget the source
   };
 
   const handleDragOver = (e) => {
@@ -57,14 +57,16 @@ const Favourite = () => {
     e.preventDefault();
 
     if (!draggedMovie || !draggedFrom) return;
-    if (draggedFrom === targetList) return;
+    if (draggedFrom === targetList) return; //no action if dropped in same list
 
     if (draggedFrom === "favourites") {
+      //moved from favourites to watch later
       setFavouriteMovies((prev) =>
         prev.filter((m) => m.id !== draggedMovie.id)
       );
       setWatchLaterMovies((prev) => [...prev, draggedMovie]);
     } else {
+      //moved from watch later to favourites
       setWatchLaterMovies((prev) =>
         prev.filter((m) => m.id !== draggedMovie.id)
       );

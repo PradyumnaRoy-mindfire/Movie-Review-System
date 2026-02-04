@@ -8,6 +8,7 @@ const Navbar = memo(function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.navbarContainer}>
+        {/* logo animation */}
         <div className={styles.navbarLogo}>
           <TextType
             text={["CineFLIX"]}
@@ -19,6 +20,7 @@ const Navbar = memo(function Navbar() {
           />
         </div>
 
+        {/* navigation links */}
         <div className={styles.navbarLinks}>
           <NavLink
             to="/"

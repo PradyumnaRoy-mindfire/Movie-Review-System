@@ -14,6 +14,7 @@ const FavouriteButton = ({ movie, hide }) => {
         e.preventDefault();
         toggleFavourite(movie);
 
+        //if hide callback is provided, remove from watch later and favourite and then hide the movie card
         if (hide) {
           removeFromWatchLater(movie);
           setTimeout(() => {

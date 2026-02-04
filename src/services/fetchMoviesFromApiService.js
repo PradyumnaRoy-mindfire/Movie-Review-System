@@ -10,6 +10,7 @@ export async function fetchMoviesFromApi({
 }) {
   let url;
 
+  // Construct the API URL based on the provided parameters
   if (query && query.trim()) {
     url = `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
       query
