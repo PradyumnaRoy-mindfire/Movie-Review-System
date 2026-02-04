@@ -26,12 +26,14 @@ const MovieDetails = () => {
     ? `${imageBaseUrl}w500${movie.poster_path}`
     : placeholderImageUrl;
 
+  // Function to format runtime in hours and minutes.
   const formatRuntime = (minutes) => {
     const hours = Math.floor(minutes / 60);
     const mins = minutes % 60;
     return `${hours}h ${mins}m`;
   };
 
+  // Function to format currency values..
   const formatCurrency = (amount) => {
     return new Intl.NumberFormat("en-US", {
       style: "currency",

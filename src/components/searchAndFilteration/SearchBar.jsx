@@ -7,7 +7,7 @@ const SearchBar = ({ searchQuery, onSearchChange }) => {
     const value = e.target.value;
     setInputValue(value);
 
-    // Debounce search ,wait for user to stop typing
+    // wait for user to stop typing
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
       onSearchChange(value);

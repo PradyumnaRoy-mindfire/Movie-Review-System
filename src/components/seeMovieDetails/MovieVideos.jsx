@@ -4,6 +4,8 @@ import LoadingEffect from "../animation/LoadingEffect";
 import VideoModal from "./VideoModal";
 import FadeInAnimation from "../animation/FadeInAnimation";
 
+const youTubeImageBaseUrl = import.meta.env.VITE_YOUTUBE_IMAGE_URL;
+
 const MovieVideos = ({ id }) => {
   const { videos, isLoading } = useFetchMovieVideos(id);
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -106,7 +108,7 @@ const MovieVideos = ({ id }) => {
                   <div className="relative aspect-video overflow-hidden rounded-lg shadow-lg">
                     {!imageErrors[video.id] ? (
                       <img
-                        src={`https://img.youtube.com/vi/${video.key}/maxresdefault.jpg`}
+                        src={`${youTubeImageBaseUrl}${video.key}/maxresdefault.jpg`}
                         alt={video.name}
                         className="w-full h-full object-cover"
                         onError={() => handleImageError(video.id)}
