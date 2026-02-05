@@ -2,7 +2,7 @@ import { useState, memo } from "react";
 import { Link } from "react-router-dom";
 import { Star, Calendar, Grip } from "lucide-react";
 import FavouriteButton from "./FavouriteButton";
-import genreData from "../../services/fetchGenresFromApiService";
+import useGenres from "../../customHooks/useGenres";
 
 const imageBaseUrl = import.meta.env.VITE_IMAGE_BASE_URL;
 const placeholderImageUrl = import.meta.env.VITE_PLACEHOLDER_IMAGE_URL;
@@ -12,13 +12,13 @@ const FavouriteMovieCard = memo(function FavouriteMovieCard({
   onDragStart,
   onDragEnd,
 }) {
-  const { genres } = genreData();
+  const { genres } = useGenres();
 
   const imageUrl = movie.poster_path
     ? `${imageBaseUrl}w200${movie.poster_path}`
     : placeholderImageUrl;
 
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(false); // to remove the card from UI when unfavourited
 
   if (hidden) {
     return null;

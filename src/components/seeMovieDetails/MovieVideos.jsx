@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useFetchMovieVideos from "../../services/fetchMovieVideosFromApiService";
+import useMovieVideos from "../../customHooks/useMovieVideos";
 import LoadingEffect from "../animation/LoadingEffect";
 import VideoModal from "./VideoModal";
 import FadeInAnimation from "../animation/FadeInAnimation";
@@ -7,7 +7,7 @@ import FadeInAnimation from "../animation/FadeInAnimation";
 const youTubeImageBaseUrl = import.meta.env.VITE_YOUTUBE_IMAGE_URL;
 
 const MovieVideos = ({ id }) => {
-  const { videos, isLoading } = useFetchMovieVideos(id);
+  const { videos, isLoading } = useMovieVideos(id);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [imageErrors, setImageErrors] = useState({});
 

@@ -1,7 +1,7 @@
-import useFetchGenres from "../../services/fetchGenresFromApiService";
+import useGenres from "../../customHooks/useGenres";
 
 const GenreFilter = ({ selectedGenre, onGenreChange }) => {
-  const { genres } = useFetchGenres();
+  const { genres } = useGenres();
 
   return (
     <div className="w-[85%] mb-8">
