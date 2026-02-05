@@ -205,9 +205,18 @@ Movie-Review-System/
 │   │   └── seeMovieDetails/  # Movie detail components
 │   ├── constants/       # Route constants
 │   ├── css/             # CSS modules
-│   ├── customHooks/     # Custom React hooks
+│   ├── customHooks/     # Custom React hooks (React Query hooks)
+│   │   ├── useGenres.js         # Genre data hook
+│   │   ├── useMovieDetails.js   # Movie details hook
+│   │   ├── useMovieVideos.js    # Movie videos hook
+│   │   ├── useFavourite.js      # Favourite management hook
+│   │   ├── useLoading.js        # Loading state hook
+│   │   └── removeFromWatchLater.js
 │   ├── pages/           # Page components
-│   ├── services/        # API services
+│   ├── services/        # API services 
+│   │   ├── movieService.js      # Movie API calls
+│   │   ├── genreService.js      # Genre API calls
+│   │   └── fetchMoviesFromApiService.js  # Movies list API
 │   ├── utils/           # Utility functions
 │   └── App.jsx          # Root component
 ├── public/              # Static assets
@@ -267,4 +276,4 @@ This project uses The Movie Database (TMDb) API v3. Key endpoints include:
 - `/` - Landing page and Show movies
 - `/movie/{movie_id}/details` - Movie details
 - `/favourites` - Show Favourites and Watch Later
-- `/about-us` - About the project 
+- `/about-us` - About the project
