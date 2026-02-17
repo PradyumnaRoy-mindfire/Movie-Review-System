@@ -5,9 +5,9 @@ const CategoryFilter = memo(function CategoryFilter({
   onCategoryChange,
 }) {
   const categories = [
-    { id: "popular", name: "Popular", icon: "🔥" },
-    { id: "top_rated", name: "Top Rated", icon: "⭐" },
-    { id: "latest", name: "Latest", icon: "🆕" },
+    { id: "popular", name: "Popular" },
+    { id: "top_rated", name: "Top Rated" },
+    { id: "latest", name: "Latest" },
   ];
 
   return (
@@ -27,7 +27,6 @@ const CategoryFilter = memo(function CategoryFilter({
                 : "bg-gradient-to-r from-gray-700 to-gray-800 text-gray-300  hover:from-gray-600 hover:to-gray-700"
             }`}
           >
-            <span className="text-xl">{category.icon}</span>
             <span>{category.name}</span>
           </button>
         ))}
